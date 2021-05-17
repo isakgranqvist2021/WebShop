@@ -14,10 +14,11 @@ import users from './controllers/users'; // every route that can only be accesse
 /* connect to mongodb */
 mongoose.connect(config.DB_URI, {
     useNewUrlParser: true, // current URL string parser is deprecated, and will be removed in a future version. 
-    useUnifiedTopology: true // Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version.
+    useUnifiedTopology: true, // Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version.
+    useCreateIndex: true
 }, function (err) { // check if an error has occured
     if (err) // if error then exit the application
-        process.exit();
+        process.exit(1);
 
     console.log('MongoDB has connected');
 });
