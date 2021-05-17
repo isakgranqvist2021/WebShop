@@ -23,9 +23,7 @@ const userSchema = new Schema({
         unique: false
     },
     password: {
-        type: String,
-        required: false,
-        unique: true
+        type: String
     }
 });
 

@@ -12,7 +12,6 @@ import signOutController from './users/sign-out';
 /* register all the routes and attach a controller */
 router.get('/account', accountController.template);
 router.post('/account', accountController.action);
-
 router.get('/sign-out', signOutController.action);
 
 /* export router variable to main.js */

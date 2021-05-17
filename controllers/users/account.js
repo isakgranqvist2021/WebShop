@@ -1,5 +1,10 @@
 function template(req, res) {
-    res.render('pages/account', {});
+    if (req.session.uid === undefined) return res.redirect('/sign-in');
+
+
+    res.render('pages/account', {
+        signedIn: req.session.uid != undefined ? true : false
+    });
 }
 
 function action(req, res) {

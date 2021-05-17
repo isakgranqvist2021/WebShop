@@ -3,6 +3,7 @@ import config from './config/config'; // contains server config such as port and
 import expressEjsLayouts from 'express-ejs-layouts'; // a small modification to the ejs template engine
 import path from 'path'; // allows server to easily work with system paths and directories
 import mongoose from 'mongoose'; // makes it easier to work with mongodb
+import session from 'express-session'; // makes managing sessions easier
 
 const app = express(); // initialize express
 
@@ -20,6 +21,17 @@ mongoose.connect(config.DB_URI, {
 
     console.log('MongoDB has connected');
 });
+
+
+/* configure server to handle sessions */
+app.use(session({
+    secret: 'change_this_later',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: false
+    }
+}));
 
 
 /* file parsing setup */

@@ -21,6 +21,7 @@ window.googleAuthInit = function () {
 
 function onSuccess(google) {
     const profile = google.getBasicProfile(); // => get the basic profile information
+    console.log(profile);
 
     fetch(`http://localhost:3000/${window.location.pathname.replace('/', '')}/google-auth`, {
         method: 'POST',
@@ -34,10 +35,12 @@ function onSuccess(google) {
         headers: { 'Content-Type': 'application/json' }
 
     }).then(response => response.json())
-        .then(response => response.success ? window.location.pathname = '/sign-in' : onError(response.message))
+        .then(response => response.success ? window.location.pathname = response.data.redirect : onError(response.message))
         .catch(err => onError(err));
 }
 
 function onError(err) {
+    console.log(err);
+
     alert(err);
 }
