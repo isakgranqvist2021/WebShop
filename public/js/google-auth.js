@@ -1,3 +1,23 @@
+window.googleAuthInit = function () {
+    const googleBtn = document.getElementById('gSignInWrapper');
+
+    if (googleBtn != null) {
+        const parameters = [
+            googleBtn,
+            new Object(),
+            onSuccess,
+            (err) => onError(err.error),
+        ];
+
+        gapi.load('auth2', function () {
+            gapi.auth2.init({
+                client_id: '558690978835-57rb86ssg02rmj71shc6mhu0gsrnfc2d.apps.googleusercontent.com', // public id for grabbing stuff from google
+                cookiepolicy: 'single_host_origin',
+            }).attachClickHandler(...parameters); // add eventListener to the google btn
+        });
+    }
+}
+
 
 function onSuccess(google) {
     const profile = google.getBasicProfile(); // => get the basic profile information
@@ -20,20 +40,4 @@ function onSuccess(google) {
 
 function onError(err) {
     alert(err);
-}
-
-window.googleAuthInit = function () {
-    const parameters = [
-        document.getElementById('gSignInWrapper'),
-        new Object(),
-        onSuccess,
-        (err) => onError(err.error),
-    ];
-
-    gapi.load('auth2', function () {
-        gapi.auth2.init({
-            client_id: '558690978835-57rb86ssg02rmj71shc6mhu0gsrnfc2d.apps.googleusercontent.com', // public id for grabbing stuff from google
-            cookiepolicy: 'single_host_origin',
-        }).attachClickHandler(...parameters); // add eventListener to the google btn
-    });
 }
