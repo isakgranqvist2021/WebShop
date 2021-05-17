@@ -7,6 +7,5 @@ npm start
 
 ```
 
-![Nodejs Logo](https://ubunlog.com/wp-content/uploads/2020/04/about-nodejs.png)
-
+![Nodejs Logo](https://dhanjivpandey.com/wp-content/uploads/2018/02/nodejs-520.jpg)
 [Project Description](https://github.com/Glimakra-Webbutvecklare-2020/case-mongo-app)
