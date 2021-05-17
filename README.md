@@ -1,10 +1,13 @@
 # Not sure what to write here
 
+## install project
 ```bash
-
 npm install
-npm start
+```
 
+## start project
+```bash
+npm start
 ```
 
 ![Nodejs Logo](https://www.schemecolor.com/wallpaper?i=23516&desktop)
