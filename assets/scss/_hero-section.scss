@@ -1,0 +1,20 @@
+.hero-section {
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .content {
+        color: #ffffff;
+
+        h1 {
+            font-size: 5rem;
+        }
+
+        button {
+            margin: 2rem .5rem;
+            padding: 1rem;
+            width: 10rem;
+        }
+    }
+}

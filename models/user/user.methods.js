@@ -95,8 +95,21 @@ async function _duplication(email) {
     });
 }
 
+async function findOneWithId(id) { // find a user with _id 
+    return new Promise((resolve, reject) => {
+        UserModel.findOne({ _id: id }, (err, user) => {
+            if (err) return reject(err);
+            if (!user) return reject('no user');
+
+            return resolve(user);
+        });
+    });
+}
+
 export default {
-    access: {},
+    access: {
+        findOneWithId
+    },
     auth: {
         form: {
             signUpWithForm,
