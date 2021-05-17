@@ -1,5 +1,5 @@
-function signOut(req, res) {
+function action(req, res) {
     res.redirect('/');
 }
 
-export default signOut;
+export default { action };

@@ -1,3 +1,25 @@
 <div class="container">
-    <h1>Sign In</h1>
+    <form class="row g-3" method="POST" action="/sign-in">
+        <h1>Sign In</h1>
+
+        <div class="google-sign-up">
+            <div id="gSignInWrapper">
+                <span class="icon"></span>
+                <p>Sign In With Google</p>
+            </div>
+        </div>
+        
+        <div class="col-md-12">
+            <label class="form-label" for="email">E-mail</label>
+            <input class="form-control" type="email" id="email" name="email">
+        </div>
+        <div class="col-md-12">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password">
+            <a class="form-text" href="/sign-up">Don't have an account?</a>
+        </div>
+        <div class="col-md-12 d-flex justify-content-end btn-group">
+            <button class="btn btn-primary">Sign In</button>
+        </div>
+    </form>
 </div>

@@ -1,5 +1,5 @@
-function Home(req, res) {
+function template(req, res) {
     res.render('pages/home', {});
 }
 
-export default Home;
+export default { template };

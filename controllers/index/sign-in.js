@@ -1,5 +1,11 @@
-function SignIn(req, res) {
+function template(req, res) {
     res.render('pages/sign-in', {});
 }
 
-export default SignIn;
+function action(req, res) {
+    console.log(req.body);
+
+    res.redirect('/sign-in');
+}
+
+export default { template, action };

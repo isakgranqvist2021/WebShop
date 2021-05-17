@@ -1,5 +1,9 @@
-function Account(req, res) {
+function template(req, res) {
     res.render('pages/account', {});
 }
 
-export default Account;
+function action(req, res) {
+    res.redirect('/users/account');
+}
+
+export default { template, action };
