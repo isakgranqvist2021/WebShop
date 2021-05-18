@@ -1,20 +1,48 @@
-form {
-    max-width: 100%;
-    padding: 2rem;
+.auth-page {
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/public/img/pexels-tobias-aeppli-1929561.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 
-    h1 {
-        font-size: 2.7rem;
+    .container {
+        display: flex;
+        justify-content: center;
     }
 
-    .form-text {
-        margin-top: .75rem;
-        display: block;
-    }
-}
-
-@media only screen and(min-width: 1200px) {
     form {
-        max-width: 30rem;
-        padding: 0;
+        max-width: 44rem;
+        padding: 2rem;
+        background-color: rgba(255, 255, 255, 0.938);
+        border-radius: .66rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+
+        header {
+            h1 {
+                font-size: 4rem;
+                text-transform: uppercase;
+            }
+        }
+
+        .form-text {
+            margin-top: .75rem;
+            display: block;
+        }
+
+        .form-actions {
+            gap: 1rem;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.75rem;
+
+        }
     }
 }
+
+
+@media only screen and(min-width: 1200px) {}

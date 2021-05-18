@@ -1,5 +1,5 @@
 window.googleAuthInit = function () {
-    const googleBtn = document.getElementById('gSignInWrapper');
+    const googleBtn = document.getElementById('google-btn');
 
     if (googleBtn != null) {
         const parameters = [
@@ -21,21 +21,25 @@ window.googleAuthInit = function () {
 
 function onSuccess(google) {
     const profile = google.getBasicProfile(); // => get the basic profile information
-    console.log(profile);
+    console.log(profile.getGivenName());
 
     fetch(`http://localhost:3000/${window.location.pathname.replace('/', '')}/google-auth`, {
         method: 'POST',
         body: JSON.stringify({
-            email: profile.Qt,
-            first_name: profile.eU,
-            last_name: profile.$R,
-            photo: profile.iJ,
-            google_id: profile.tS
+            email: profile.getEmail(),
+            first_name: profile.getGivenName(),
+            last_name: profile.getFamilyName(),
+            photo: profile.getImageUrl(),
+            google_id: profile.getId()
         }),
         headers: { 'Content-Type': 'application/json' }
 
     }).then(response => response.json())
-        .then(response => response.success ? window.location.pathname = response.data.redirect : onError(response.message))
+        .then(response => {
+            console.log(response);
+
+            response.success ? window.location.pathname = response.data.redirect : onError(response.message)
+        })
         .catch(err => onError(err));
 }
 

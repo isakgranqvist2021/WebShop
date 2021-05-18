@@ -1,0 +1,30 @@
+nav.isTop {}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333333;
+    z-index: 4;
+    padding: 1.6rem;
+    font-family: inherit;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            &:not(:last-of-type) {
+                margin-right: 1rem;
+            }
+        }
+    }
+}

@@ -1,25 +1,28 @@
-<div class="container content-container">
-    <form class="row g-3" method="POST" action="/sign-in/form-auth">
-        <h1>Sign In</h1>
+<div class="auth-page">
+    <div class="container">
+        <form class="row g-3" method="POST" action="/sign-in/form-auth">
+            <header>
+                <h1>Sign In</h1>
+    
 
-        <div class="google-sign-up">
-            <div id="gSignInWrapper">
-                <span class="icon"></span>
-                <p>Sign In With Google</p>
+            </header>
+    
+            <div class="col-md-12">
+                <label class="form-label" for="email">E-mail</label>
+                <input class="form-control" type="email" id="email" name="email">
             </div>
-        </div>
-
-        <div class="col-md-12">
-            <label class="form-label" for="email">E-mail</label>
-            <input class="form-control" type="email" id="email" name="email">
-        </div>
-        <div class="col-md-12">
-            <label class="form-label" for="password">Password</label>
-            <input class="form-control" type="password" id="password" name="password">
-            <a class="form-text" href="/sign-up">Don't have an account?</a>
-        </div>
-        <div class="col-md-12 d-flex justify-content-end btn-group">
-            <button class="btn btn-primary">Sign In</button>
-        </div>
-    </form>
+            <div class="col-md-12">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password">
+                <a class="form-text" href="/sign-up">Don't have an account?</a>
+            </div>
+            <div class="col-md-12 d-flex justify-content-between form-actions">
+                <button type="button" id="google-btn" class="btn btn-dark">
+                    <i class="fab fa-google"></i>
+                    Sign In With Google
+                </button>
+                <button class="btn btn-primary">Sign In</button>
+            </div>
+        </form>
+    </div>
 </div>
