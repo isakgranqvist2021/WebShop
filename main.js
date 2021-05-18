@@ -41,18 +41,18 @@ app.use(session({
         path: '/',
         sameSite: 'strict', // only allow requests from the same origin as the server
         httpOnly: true, // can the cookie be accessed by client-side javascript? true = false :o
-        secure: process.env.NODE_ENV === 'production'
+        secure: process.env.NODE_ENV === 'production' // should the cookie accessible over the HTTP protocol or only HTTPS?
     }
 }));
 
 
 /* file parsing setup */
 app.use(express.json({
-    extended: false
+    extended: true // should the server be allowed to parse nested objects
 })); // allow server to parse json data
 
 app.use(express.urlencoded({
-    extended: false
+    extended: false // should the server be allowed to parse nested objects
 })); // allow server to parse form data
 
 

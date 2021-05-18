@@ -13,6 +13,7 @@ import signUpController from './index/sign-up';
 /* register all the routes and attach a controller */
 router.get('/', homeController.template);
 
+// authType will be something like 'form-auth', 'google-auth' etc..
 router.get('/sign-in', signInController.template);
 router.post('/sign-in/:authType', signInController.action);
 

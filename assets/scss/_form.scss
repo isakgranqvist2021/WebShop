@@ -30,6 +30,16 @@
             }
         }
 
+        .form-label {
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                margin: 0;
+                font-size: .75rem;
+            }
+        }
+
         .form-text {
             margin-top: .75rem;
             display: block;

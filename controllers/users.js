@@ -3,6 +3,9 @@ const router = express.Router();
 
 /*
     these routes can only be accessed by users with a valid session
+
+    an action is used to retrieve or update data - always results in a res.redirect or res.json
+    a template is used for sending a html template file
 */
 
 /* import all the controllers */
