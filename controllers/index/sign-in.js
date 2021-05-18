@@ -1,8 +1,7 @@
 import UserMethods from '../../models/user/user.methods';
+import validators from '../../utils/validators';
 
 function template(req, res) {
-    if (req.session.uid != undefined) return res.redirect('/users/account');
-
     res.render('pages/sign-in', {
         signedIn: req.session.uid != undefined ? true : false
     });
@@ -19,6 +18,7 @@ function action(req, res) {
 function _signInWithForm(req, res) {
     if (!req.body.email) return res.redirect('/sign-in?err=missing email');
     if (!req.body.password) return res.redirect('/sign-in?err=missing password');
+    if (!validators.emailValidator(req.body.email)) return res.redirect('/sign-in?err=email not approved');
 
     UserMethods.auth.form.signInWithForm(req.body)
         .then(result => {

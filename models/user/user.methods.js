@@ -18,10 +18,10 @@ async function signUpWithForm(data) {
                             last_name: data.last_name.toLowerCase(),
                             password: hash,
                             auth_type: 'form'
-                        }).save((err) => {
+                        }).save((err, newDoc) => {
                             if (err) return reject(err);
 
-                            return resolve('saved');
+                            return resolve(newDoc._id);
                         });
                     });
                 });
@@ -59,12 +59,12 @@ async function signUpWithGoogle(data) {
                     last_name: data.last_name.toLowerCase(),
                     password: null,
                     auth_type: 'google'
-                }).save((err) => {
+                }).save((err, newDoc) => {
                     console.log(err);
 
                     if (err) return reject(err);
 
-                    return resolve('saved');
+                    return resolve(newDoc._id);
                 });
 
             }).catch(err => reject(err));

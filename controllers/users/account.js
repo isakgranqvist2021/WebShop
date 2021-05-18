@@ -1,8 +1,6 @@
 import UserMethods from '../../models/user/user.methods';
 
 function template(req, res) {
-    if (req.session.uid === undefined) return res.redirect('/sign-in');
-
     UserMethods.access.findOneWithId(req.session.uid)
         .then(user => {
             res.render('pages/account', {

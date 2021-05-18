@@ -25,7 +25,7 @@
         header {
             h1 {
                 font-size: 4rem;
-                text-transform: uppercase;
+                text-transform: lowercase;
                 color: rgba(78, 78, 78, 0.88);
             }
         }
@@ -41,6 +41,9 @@
             justify-content: space-between;
             margin-top: 1.75rem;
 
+            button {
+                font-size: .85rem;
+            }
         }
     }
 }

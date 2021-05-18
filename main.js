@@ -4,7 +4,11 @@ import expressEjsLayouts from 'express-ejs-layouts'; // a small modification to 
 import path from 'path'; // allows server to easily work with system paths and directories
 import mongoose from 'mongoose'; // makes it easier to work with mongodb
 import session from 'express-session'; // makes managing sessions easier
+import MongoStore from 'connect-mongo'; // save session data in mongodb
+import authMiddleware from './config/mw'; // auth middlewares
+import dotenv from 'dotenv'; // .env variables
 
+dotenv.config(); // initialize .env
 const app = express(); // initialize express
 
 import index from './controllers/index'; // every route that can be accessed without authorization
@@ -26,11 +30,18 @@ mongoose.connect(config.DB_URI, {
 
 /* configure server to handle sessions */
 app.use(session({
-    secret: 'change_this_later',
+    secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: config.DB_URI
+    }),
     cookie: {
-        secure: false
+        maxAge: 60000 * 60 * 60, // how long should the cookie be alive for if left alone? in milliseconds
+        path: '/',
+        sameSite: 'strict', // only allow requests from the same origin as the server
+        httpOnly: true, // can the cookie be accessed by client-side javascript? true = false :o
+        secure: process.env.NODE_ENV === 'production'
     }
 }));
 
@@ -57,8 +68,8 @@ app.use('/assets', express.static('node_modules/bootstrap')); // where bootstrap
 
 
 /* router setup - responsible for the controllers folder */
-app.use('/', index); // every route that can be accessed without authorization
-app.use('/users', users); // every route that can only be accessed with authorization
+app.use('/', authMiddleware.hasNotAuth, index); // every route that can be accessed without authorization
+app.use('/users', authMiddleware.hasAuth, users); // every route that can only be accessed with authorization
 
 
 app.listen(config.PORT, function () { // start server and listen for incomming http requests
