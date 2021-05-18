@@ -2,9 +2,6 @@
 @import 'hero-section';
 @import 'nav';
 
-* {
-    box-sizing: border-box;
-}
 
 html,
 body {
@@ -13,8 +10,6 @@ body {
 }
 
 body {
-    margin: 0;
-
     &::-webkit-scrollbar {
         background-color: #ffffff;
     }

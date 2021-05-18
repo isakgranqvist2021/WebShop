@@ -35,11 +35,7 @@ function onSuccess(google) {
         headers: { 'Content-Type': 'application/json' }
 
     }).then(response => response.json())
-        .then(response => {
-            console.log(response);
-
-            response.success ? window.location.pathname = response.data.redirect : onError(response.message)
-        })
+        .then(response => response.success ? window.location.pathname = response.data.redirect : onError(response.message))
         .catch(err => onError(err));
 }
 

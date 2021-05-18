@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('/public/img/pexels-tobias-aeppli-1929561.jpg');
+    background-image: url('/public/img/snowscape.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -15,8 +15,8 @@
     }
 
     form {
-        max-width: 44rem;
-        padding: 2rem;
+        max-width: 90%;
+        padding: 4rem;
         background-color: rgba(255, 255, 255, 0.938);
         border-radius: .66rem;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -26,6 +26,7 @@
             h1 {
                 font-size: 4rem;
                 text-transform: uppercase;
+                color: rgba(78, 78, 78, 0.88);
             }
         }
 
@@ -45,4 +46,10 @@
 }
 
 
-@media only screen and(min-width: 1200px) {}
+@media only screen and(min-width: 1200px) {
+    .auth-page {
+        form {
+            max-width: 44rem;
+        }
+    }
+}

@@ -9,12 +9,37 @@
 
         h1 {
             font-size: 5rem;
+
+            span {
+                color: #0d6efd;
+            }
         }
 
         button {
             margin: 2rem .5rem;
             padding: 1rem;
             width: 10rem;
+        }
+    }
+}
+
+@media only screen and(max-width: 1200px) {
+    .hero-section {
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .content {
+            margin-bottom: 2rem;
+
+            h1 {
+                font-size: 3rem;
+                text-align: center;
+            }
+
+            button {
+                display: block;
+                margin: 1rem auto;
+            }
         }
     }
 }
