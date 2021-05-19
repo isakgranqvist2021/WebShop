@@ -1,5 +1,6 @@
-import UserMethods from '../../models/user/user.methods';
+import userMethods from '../../models/user/user.methods';
 import validators from '../../utils/validators';
+
 
 function template(req, res) {
     res.render('pages/sign-in', {
@@ -22,13 +23,13 @@ function _signInWithForm(req, res) {
     if (!req.body.password) return res.redirect('/sign-in?err=missing password');
     if (!validators.emailValidator(req.body.email)) return res.redirect('/sign-in?err=email not approved');
 
-    UserMethods.auth.form.signInWithForm(req.body)
+    userMethods.signInWithForm(req.body)
         .then(result => {
             req.session.regenerate((err) => {
                 if (err) return res.redirect('/sign-in?err=internal error');
 
                 req.session.uid = result._id;
-                return res.redirect('/users/account?success=whalecum ' + result.first_name);
+                return res.redirect('/users/account?success=welcome ' + result.first_name);
             });
 
         }).catch(err => res.redirect('/sign-in?err=invalid email or password'));
@@ -38,13 +39,13 @@ function _signInWithForm(req, res) {
 function _signInWithGoogle(req, res) {
     if (!req.body.email) return res.json({ message: 'missing email', success: false, data: null });
 
-    UserMethods.auth.google.signInWithGoogle(req.body.email)
+    userMethods.signInWithGoogle(req.body.email)
         .then(result => {
             req.session.regenerate((err) => {
                 if (err) return res.json({ message: 'internal server error', success: false, data: null });
 
                 req.session.uid = result._id;
-                return res.json({ message: 'whalecum ' + result.first_name, success: true, data: { redirect: '/users/account' } });
+                return res.json({ message: 'welcome ' + result.first_name, success: true, data: { redirect: '/users/account' } });
             });
 
         }).catch(err => res.redirect('/sign-in?err=invalid email or password'));

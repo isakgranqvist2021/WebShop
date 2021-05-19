@@ -1,7 +1,7 @@
-import UserMethods from '../../models/user/user.methods';
+import userMethods from '../../models/user/user.methods';
 
 function template(req, res) {
-    UserMethods.access.findOneWithId(req.session.uid)
+    userMethods.findOneWithId(req.session.uid)
         .then(user => {
             res.render('pages/account', {
                 title: 'Account',

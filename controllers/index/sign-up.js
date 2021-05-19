@@ -1,4 +1,4 @@
-import UserMethods from '../../models/user/user.methods';
+import userMethods from '../../models/user/user.methods';
 import validators from '../../utils/validators';
 
 function template(req, res) {
@@ -27,7 +27,7 @@ function _signUpWithForm(req, res) {
     if (req.body.password != req.body.confirm_password) return res.redirect('/sign-up?err=passwords do not match');
     if (!validators.emailValidator(req.body.email)) return res.redirect('/sign-up?err=email not approved');
 
-    UserMethods.auth.form.signUpWithForm(req.body)
+    userMethods.signUpWithForm(req.body)
         .then(result => {
             req.session.regenerate((err) => {
                 if (err)
@@ -45,7 +45,7 @@ function _signUpWithGoogle(req, res) {
     if (!req.body.first_name) return res.json({ message: 'missing first name', success: false, data: null });
     if (!req.body.last_name) return res.json({ message: 'missing last name', success: false, data: null });
 
-    UserMethods.auth.google.signUpWithGoogle(req.body)
+    userMethods.signUpWithGoogle(req.body)
         .then(result => {
             req.session.regenerate((err) => {
                 if (err)

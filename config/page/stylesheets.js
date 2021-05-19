@@ -1,5 +1,6 @@
 function getStylesheets(url) {
-    console.log(url);
+    if (url.includes('?'))
+        url = url.substring(0, url.indexOf('?'));
 
     switch (url) {
         case '/': return { stylesheets: ['hero-section.min.css'] };

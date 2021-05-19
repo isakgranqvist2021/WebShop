@@ -1,5 +1,8 @@
-import UserModel from './user.model';
+import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import userSchema from './user.schema';
+
+const UserModel = mongoose.model('User', userSchema);
 
 /* form auth */
 async function signUpWithForm(data) {
@@ -107,17 +110,9 @@ async function findOneWithId(id) { // find a user with _id
 }
 
 export default {
-    access: {
-        findOneWithId
-    },
-    auth: {
-        form: {
-            signUpWithForm,
-            signInWithForm
-        },
-        google: {
-            signUpWithGoogle,
-            signInWithGoogle
-        }
-    }
+    signUpWithForm,
+    signInWithForm,
+    signUpWithGoogle,
+    signInWithGoogle,
+    findOneWithId
 };
