@@ -35,6 +35,20 @@ nav {
                 border-radius: .25rem;
             }
 
+            .logo-container {
+                height: inherit;
+                display: flex;
+                align-items: center;
+                width: 200px;
+
+                svg {
+                    max-height: 50%;
+                    max-width: 100%;
+                    object-fit: contain;
+                    fill: $primary;
+                }
+            }
+
             a {
                 color: $primary;
                 text-decoration: none;

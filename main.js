@@ -11,8 +11,8 @@ import dotenv from 'dotenv'; // .env variables
 dotenv.config(); // initialize .env
 const app = express(); // initialize express
 
-import index from './controllers/index'; // every route that can be accessed without authorization
-import users from './controllers/users'; // every route that can only be accessed with authorization
+import index from './routers/index'; // every route that can be accessed without authorization
+import users from './routers/users'; // every route that can only be accessed with authorization
 
 
 /* connect to mongodb */

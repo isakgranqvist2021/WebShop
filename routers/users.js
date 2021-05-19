@@ -9,8 +9,8 @@ const router = express.Router();
 */
 
 /* import all the controllers */
-import accountController from './users/account';
-import signOutController from './users/sign-out';
+import accountController from '../controllers/users/account';
+import signOutController from '../controllers/users/sign-out';
 
 /* register all the routes and attach a controller */
 router.get('/account', accountController.template);

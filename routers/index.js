@@ -6,9 +6,9 @@ const router = express.Router();
 */
 
 /* import all the controllers */
-import homeController from './index/home';
-import signInController from './index/sign-in';
-import signUpController from './index/sign-up';
+import homeController from '../controllers/index/home';
+import signInController from '../controllers/index/sign-in';
+import signUpController from '../controllers/index/sign-up';
 
 /* register all the routes and attach a controller */
 router.get('/', homeController.template);

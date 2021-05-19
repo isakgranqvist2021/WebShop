@@ -56,3 +56,15 @@
         }
     }
 }
+
+@media only screen and (max-width: 1200px) {
+    .hero-section {
+        height: 60vh;
+
+        .container {
+            .image {
+                display: none;
+            }
+        }
+    }
+}
