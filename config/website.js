@@ -14,8 +14,6 @@ function websiteConfig(url) {
         case '/collections':
             Object.assign(config, getCollections());
             break;
-
-        default: Object.assign(config, { stylesheets: [] })
     }
 
     return config;
