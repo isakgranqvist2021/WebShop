@@ -10,6 +10,9 @@ nav {
     z-index: 4;
     font-family: inherit;
     height: 5rem;
+    background-color: $light;
+    border-bottom: 1px solid rgba($primary, .2);
+    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
 
     .container {
         height: inherit;
@@ -25,36 +28,17 @@ nav {
                 flex-grow: 1;
             }
 
-            .logo-container {
-                width: 200px;
-
-                svg {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-
-                    #path0 {
-                        fill: $light;
-                    }
-
-                    #path1 {
-                        fill: $light;
-                    }
-
-                    #path2 {
-                        fill: $primary;
-                    }
-
-                    #path3 {
-                        fill: $light;
-                    }
-                }
+            #sign-up-link {
+                background-color: $primary;
+                color: $light;
+                padding: .5rem 1rem;
+                border-radius: .25rem;
             }
 
             a {
-                color: #ffffff;
+                color: $primary;
                 text-decoration: none;
-                text-transform: uppercase;
+                text-transform: capitalize;
 
                 &:not(:last-of-type) {
                     margin-right: 1rem;

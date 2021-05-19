@@ -2,25 +2,12 @@
     height: 100%;
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('/public/img/snowscape.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
 
-    .container {
-        display: flex;
-        justify-content: center;
-    }
 
     form {
         max-width: 90%;
-        padding: 4rem;
+        padding: 4rem 0;
         background-color: rgba(255, 255, 255, 0.938);
-        border-radius: .66rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-
 
         header {
             h1 {

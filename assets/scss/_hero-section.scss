@@ -1,54 +1,58 @@
 .hero-section {
-    height: 75vh;
-    width: 100%;
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    .content {
-        animation: fadeIn 400ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 200ms 1 both;
+    .container {
+        display: flex;
+        min-height: inherit;
 
-        h1 {
-            font-size: 5rem;
-            color: $light;
+        .content,
+        .image {
+            width: 100%;
+            min-height: inherit;
         }
-
-        button {
-            margin: 2rem .5rem;
-            padding: 1rem;
-            width: 10rem;
-        }
-    }
-}
-
-@media only screen and(max-width: 1200px) {
-    .hero-section {
-        flex-direction: column;
-        justify-content: flex-end;
 
         .content {
-            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            h1,
+            p {
+                margin: 0;
+            }
 
             h1 {
-                font-size: 3rem;
-                text-align: center;
+                font-size: 4.2rem;
+                font-weight: 900;
+                color: $dark;
+                max-width: 14ch;
+
+                span {
+                    color: $primary;
+                    border-bottom: 5px solid $primary;
+                }
+            }
+
+            p {
+                margin: 2rem 0;
+                font-size: 2rem;
+                color: $dark;
             }
 
             button {
-                display: block;
-                margin: 1rem auto;
+                max-width: 50%;
+                padding: 1.25rem;
             }
         }
-    }
-}
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
+        .image {
+            background-image: url('/public/img/pexels-katie-e-3671083.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
     }
 }
