@@ -1,4 +1,6 @@
-window.googleAuthInit = function () {
+function googleAuthInit() {
+    console.log('init google');
+
     const googleBtn = document.getElementById('google-btn');
 
     if (googleBtn != null) {
@@ -17,7 +19,6 @@ window.googleAuthInit = function () {
         });
     }
 }
-
 
 function onSuccess(google) {
     const profile = google.getBasicProfile(); // => get the basic profile information
@@ -44,3 +45,9 @@ function onError(err) {
 
     alert(err);
 }
+
+
+(function () {
+    if (window.location.pathname === '/sign-in' || window.location.pathname === '/sign-up')
+        googleAuthInit();
+})();

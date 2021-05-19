@@ -1,6 +1,10 @@
 function template(req, res) {
-    res.render('pages/home', {
-        title: 'Home',
+    const query = {
+        filter: req.query.q || 'all'
+    }
+
+    return res.render('pages/products', {
+        title: 'Products',
         config: req.headers.config,
         signedIn: req.session.uid != undefined ? true : false
     });

@@ -9,6 +9,8 @@ const router = express.Router();
 import homeController from '../controllers/index/home';
 import signInController from '../controllers/index/sign-in';
 import signUpController from '../controllers/index/sign-up';
+import collectionsController from '../controllers/index/collections';
+import productsController from '../controllers/index/products';
 
 /* register all the routes and attach a controller */
 router.get('/', homeController.template);
@@ -19,6 +21,11 @@ router.post('/sign-in/:authType', signInController.action);
 
 router.get('/sign-up', signUpController.template);
 router.post('/sign-up/:authType', signUpController.action);
+
+
+router.get('/collections', collectionsController.template);
+
+router.get('/products', productsController.template);
 
 /* export router variable to main.js */
 export default router;

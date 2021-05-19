@@ -19,4 +19,5 @@ function hasAuth(req, res, next) {
     return next();
 }
 
+
 export default { hasNotAuth, hasAuth };

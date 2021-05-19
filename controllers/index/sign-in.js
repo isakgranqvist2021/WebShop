@@ -3,6 +3,8 @@ import validators from '../../utils/validators';
 
 function template(req, res) {
     res.render('pages/sign-in', {
+        title: 'Sign In',
+        config: req.headers.config,
         signedIn: req.session.uid != undefined ? true : false
     });
 }

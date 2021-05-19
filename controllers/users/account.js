@@ -4,6 +4,8 @@ function template(req, res) {
     UserMethods.access.findOneWithId(req.session.uid)
         .then(user => {
             res.render('pages/account', {
+                title: 'Account',
+                config: req.headers.config,
                 signedIn: req.session.uid != undefined ? true : false,
                 user: {
                     email: user.email,

@@ -24,10 +24,6 @@ nav {
             align-items: center;
             height: inherit;
 
-            &:nth-child(1) {
-                flex-grow: 1;
-            }
-
             #sign-up-link {
                 background-color: $primary;
                 color: $light;
@@ -39,7 +35,7 @@ nav {
                 height: inherit;
                 display: flex;
                 align-items: center;
-                width: 200px;
+                width: 50px;
 
                 svg {
                     max-height: 50%;

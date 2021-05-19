@@ -5,7 +5,8 @@ import path from 'path'; // allows server to easily work with system paths and d
 import mongoose from 'mongoose'; // makes it easier to work with mongodb
 import session from 'express-session'; // makes managing sessions easier
 import MongoStore from 'connect-mongo'; // save session data in mongodb
-import authMiddleware from './config/mw'; // auth middlewares
+import authMiddleware from './config/auth.mw'; // auth middlewares
+import configMiddleware from './config/config.mw'; // attach config object to request object
 import dotenv from 'dotenv'; // .env variables
 
 dotenv.config(); // initialize .env
@@ -65,6 +66,9 @@ app.use(expressEjsLayouts); // enable ejs layout - extend a single layout file
 /* static files setup - responsible for the public folder */
 app.use('/public', express.static('public')); // set the folder where public files will be served from
 app.use('/assets', express.static('node_modules/bootstrap')); // where bootstrap is loaded from
+
+
+app.use('*', configMiddleware.setupConfig);
 
 
 /* router setup - responsible for the controllers folder */
