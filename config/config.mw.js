@@ -1,7 +1,7 @@
 import website from './website';
 
 function setupConfig(req, res, next) {
-    req.headers.config = { ...website(req.url) };
+    req.headers.config = website(req.originalUrl);
 
     return next();
 }

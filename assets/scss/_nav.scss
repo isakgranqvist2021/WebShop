@@ -1,6 +1,6 @@
-@import 'bs';
+@import 'colors';
 
-nav.isTop {}
+// nav.isTop {}
 
 nav {
     position: fixed;
@@ -12,7 +12,10 @@ nav {
     height: 5rem;
     background-color: $light;
     border-bottom: 1px solid rgba($primary, .2);
-    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+    box-shadow:
+        0 3px 5px -1px rgb(0 0 0 / 20%),
+        0 6px 10px 0 rgb(0 0 0 / 14%),
+        0 1px 18px 0 rgb(0 0 0 / 12%);
 
     .container {
         height: inherit;

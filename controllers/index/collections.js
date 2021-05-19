@@ -1,10 +1,3 @@
-const collections = [
-    {
-        label: 'Shirts',
-
-    }
-]
-
 function template(req, res) {
     return res.render('pages/collections', {
         title: 'Collections',
