@@ -14,7 +14,7 @@ function action(req, res) {
     switch (req.params.authType) {
         case 'form-auth': return _signInWithForm(req, res);
         case 'google-auth': return _signInWithGoogle(req, res);
-        default: return res.redirect('/sign-in');
+        default: return res.status(403).redirect('/sign-in?err=auth type does not exist');
     }
 }
 

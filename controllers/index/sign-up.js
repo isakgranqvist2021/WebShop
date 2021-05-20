@@ -10,14 +10,18 @@ function template(req, res) {
 }
 
 function action(req, res) {
+    if (!req.params.authType)
+        return res.redirect('/sign-up?err=we don\'t support the requested auth type');
+
     switch (req.params.authType) {
         case 'form-auth': return _signUpWithForm(req, res);
         case 'google-auth': return _signUpWithGoogle(req, res);
-        default: return res.redirect('/sign-up');
+        default: return res.redirect('/sign-up?err=auth type does not exist');
     }
 }
 
 function _signUpWithForm(req, res) {
+    if (Object.keys(req.body).length === 0) return res.redirect('/sign-up?err=missing body');
     if (!req.body.email) return res.redirect('/sign-up?err=missing email');
     if (!req.body.first_name) return res.redirect('/sign-up?err=missing first name');
     if (!req.body.last_name) return res.redirect('/sign-up?err=missing last name');
@@ -41,6 +45,7 @@ function _signUpWithForm(req, res) {
 }
 
 function _signUpWithGoogle(req, res) {
+    if (Object.keys(req.body).length === 0) return res.json({ message: 'missing body', success: false, data: null });
     if (!req.body.email) return res.json({ message: 'missing email', success: false, data: null });
     if (!req.body.first_name) return res.json({ message: 'missing first name', success: false, data: null });
     if (!req.body.last_name) return res.json({ message: 'missing last name', success: false, data: null });
