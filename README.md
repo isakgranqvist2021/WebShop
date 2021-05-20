@@ -10,6 +10,12 @@ npm install
 npm start
 ```
 
+## run mocha
+
+```bash
+npm run test:mocha
+```
+
 ## .env - mongodb atlast
 ```js
 PORT = ?
