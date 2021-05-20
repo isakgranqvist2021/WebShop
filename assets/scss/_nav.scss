@@ -69,9 +69,31 @@ nav {
         top: 1rem;
         left: 1rem;
         cursor: pointer;
+        width: 2.5rem;
+        height: 3rem;
+
+        span {
+            display: block;
+            background-color: black;
+            height: 3px;
+            width: 100%;
+
+            &:not(:last-of-type) {
+                margin-bottom: .6rem;
+            }
+        }
 
         &.isOpen {
-            left: calc(300px + 2rem);
+            left: calc(80% + 1.25rem);
+
+            span:nth-child(1) {
+                width: 33%;
+            }
+
+            span:nth-child(2) {
+                width: 66%;
+            }
+
         }
     }
 
@@ -84,7 +106,7 @@ nav {
         background-color: $dark;
 
         &.isOpen {
-            width: 300px;
+            width: 80%;
         }
 
         .container {
@@ -95,7 +117,7 @@ nav {
             div {
                 flex-direction: column;
                 height: auto;
-                width: 300px;
+                width: 100%;
 
                 .logo-container {
                     svg {
@@ -106,7 +128,7 @@ nav {
 
                 a {
                     color: $light;
-                    margin: .5rem 0;
+                    margin: .7rem 0;
 
                     &:not(:last-of-type) {
                         margin-right: 0;
