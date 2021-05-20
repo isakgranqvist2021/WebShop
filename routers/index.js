@@ -11,6 +11,7 @@ import signInController from '../controllers/index/sign-in';
 import signUpController from '../controllers/index/sign-up';
 import collectionsController from '../controllers/index/collections';
 import productsController from '../controllers/index/products';
+import productController from '../controllers/index/product';
 
 /* register all the routes and attach a controller */
 router.get('/', homeController.template);
@@ -26,6 +27,7 @@ router.post('/sign-up/:authType', signUpController.action);
 router.get('/collections', collectionsController.template);
 
 router.get('/products', productsController.template);
+router.get('/product/:product_id', productController.template);
 
 /* export router variable to main.js */
 export default router;

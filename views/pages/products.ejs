@@ -1,3 +1,11 @@
-<div class="container pt-5">
+<div class="container pt-5 pb-5">
     <h1><%= q.replace('_', ' ') %></h1>
+
+    <div class="products">
+        <% products.forEach(product => { %>
+           <a class="card" href="/product/<%= product._id %>">
+                <%= product.title %>
+           </a>
+        <% }) %>
+    </div>
 </div>

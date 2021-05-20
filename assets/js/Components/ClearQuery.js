@@ -1,20 +1,20 @@
 import displayAlert from './DisplayAlerts';
 
 function clearQuery() {
-    const q = new URLSearchParams(window.location.search); // everything after ?= in the address bar
-    const e = q.get('err'); // set by the server
-    const s = q.get('success'); // set by the server
+    const url = new URL(window.location); // everything after ?= in the address bar
 
-    // send the message if present to the displayAlert function 
-    if (e != null)
-        displayAlert({ message: e, type: 'error' });
+    if (url.searchParams.get('err') != null) {
+        displayAlert({ type: 'error', message: url.searchParams.get('err') });
+    }
 
-    if (s != null)
-        displayAlert({ message: s, type: 'success' });
+    if (url.searchParams.get('success') != null) {
+        displayAlert({ type: 'success', message: url.searchParams.get('success') });
+    }
 
-
+    url.searchParams.delete('err');
+    url.searchParams.delete('success');
+    window.history.pushState({}, '', url);
     // update the address bar so the query parameters isn't visible to the user
-    window.history.pushState({}, document.title, window.location.pathname);
 }
 
 export default clearQuery;

@@ -15,6 +15,8 @@ const app = express(); // initialize express
 import index from './routers/index'; // every route that can be accessed without authorization
 import users from './routers/users'; // every route that can only be accessed with authorization
 
+import productMethods from './models/product/product.methods';
+productMethods.saveProduct();
 
 /* connect to mongodb */
 mongoose.connect(config.DB_URI, {
