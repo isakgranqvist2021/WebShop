@@ -10,12 +10,16 @@ const userSchema = new Schema({
     first_name: {
         type: String,
         required: true,
-        unique: false
+        unique: false,
+        min: 2,
+        max: 50
     },
     last_name: {
         type: String,
         required: true,
-        unique: false
+        unique: false,
+        min: 2,
+        max: 50
     },
     auth_type: {
         type: String,

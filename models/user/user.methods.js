@@ -52,8 +52,8 @@ async function signInWithForm(data) {
 /* google auth */
 async function signUpWithGoogle(data) {
     return new Promise((resolve, reject) => {
-        _duplication(data.email) // check for duplication, some nasty errors might occur if the same email is used twice
-            .then(() => {
+        return _duplication(data.email) // check for duplication, some nasty errors might occur if the same email is used twice
+            .then((ok) => {
                 new UserModel({
                     email: data.email.toLowerCase(),
                     first_name: data.first_name.toLowerCase(),
@@ -89,7 +89,7 @@ async function _duplication(email) {
         UserModel.findOne({ email: email.toLowerCase() }, (err, user) => {
             if (err) return reject(err);
             if (user) return reject('user already exists');
-            if (!user) return resolve();
+            if (!user) return resolve(true);
         });
     });
 }
