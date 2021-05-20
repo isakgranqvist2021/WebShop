@@ -4,7 +4,7 @@ import getHomePage from './page/home-page';
 import getSiteLogo from './page/site-logo';
 import getStylesheets from './page/stylesheets';
 
-function websiteConfig(url) {
+function siteConfig(url) {
     let config = Object.assign({}, getSiteLogo(), getGeneralConfig(), getStylesheets(url));
 
     switch (url) {
@@ -19,4 +19,4 @@ function websiteConfig(url) {
     return config;
 }
 
-export default websiteConfig
+export default siteConfig

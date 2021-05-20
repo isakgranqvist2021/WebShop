@@ -1,10 +1,7 @@
-import website from './website';
+import siteConfig from './site-config';
 
 function setupConfig(req, res, next) {
-    req.headers.config = website(req.originalUrl);
-
-    console.log(req.headers.config);
-
+    req.headers.config = siteConfig(req.originalUrl);
     return next();
 }
 

@@ -34,8 +34,6 @@ async function signUpWithForm(data) {
 }
 
 async function signInWithForm(data) {
-    console.log(data);
-
     return new Promise((resolve, reject) => {
         UserModel.findOne({ email: data.email }, (err, user) => {
             if (err) return reject(err);
@@ -63,8 +61,6 @@ async function signUpWithGoogle(data) {
                     password: null,
                     auth_type: 'google'
                 }).save((err, newDoc) => {
-                    console.log(err);
-
                     if (err) return reject(err);
 
                     return resolve(newDoc._id);

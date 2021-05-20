@@ -2,6 +2,10 @@
 
 // nav.isTop {}
 
+.open-sidenav {
+    display: none;
+}
+
 nav {
     position: fixed;
     top: 0;
@@ -12,10 +16,6 @@ nav {
     height: 5rem;
     background-color: $light;
     border-bottom: 1px solid rgba($primary, .2);
-    // box-shadow:
-    //     0 3px 5px -1px rgb(0 0 0 / 20%),
-    //     0 6px 10px 0 rgb(0 0 0 / 14%),
-    //     0 1px 18px 0 rgb(0 0 0 / 12%);
 
     .container {
         height: inherit;
@@ -55,6 +55,62 @@ nav {
 
                 &:not(:last-of-type) {
                     margin-right: 1rem;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and(max-width: 900px) {
+    .open-sidenav {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        cursor: pointer;
+
+        &.isOpen {
+            left: calc(300px + 2rem);
+        }
+    }
+
+
+    nav {
+        height: 100%;
+        width: 0;
+        overflow: hidden;
+        border-bottom: none;
+        background-color: $dark;
+
+        &.isOpen {
+            width: 300px;
+        }
+
+        .container {
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 0;
+
+            div {
+                flex-direction: column;
+                height: auto;
+                width: 300px;
+
+                .logo-container {
+                    svg {
+                        fill: $light;
+                        height: 150px;
+                    }
+                }
+
+                a {
+                    color: $light;
+                    margin: .5rem 0;
+
+                    &:not(:last-of-type) {
+                        margin-right: 0;
+                    }
                 }
             }
         }

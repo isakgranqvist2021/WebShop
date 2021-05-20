@@ -7,7 +7,8 @@ function getStylesheets(url) {
         case '/sign-in': return { stylesheets: ['form.min.css'] };
         case '/sign-up': return { stylesheets: ['form.min.css'] };
         case '/collections': return { stylesheets: ['collections.min.css', 'page.min.css'] };
-        case '/products': return { stylesheets: ['page.min.css'] }
+        case '/products': return { stylesheets: ['page.min.css'] };
+        case '/users/account': return { stylesheets: ['page.min.css'] };
         default: return { stylesheets: [] };
     }
 }

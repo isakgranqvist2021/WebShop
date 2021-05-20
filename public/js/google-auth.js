@@ -1,6 +1,4 @@
 function googleAuthInit() {
-    console.log('init google');
-
     const googleBtn = document.getElementById('google-btn');
 
     if (googleBtn != null) {
@@ -22,7 +20,6 @@ function googleAuthInit() {
 
 function onSuccess(google) {
     const profile = google.getBasicProfile(); // => get the basic profile information
-    console.log(profile.getGivenName());
 
     fetch(`http://localhost:3000/${window.location.pathname.replace('/', '')}/google-auth`, {
         method: 'POST',
@@ -41,8 +38,6 @@ function onSuccess(google) {
 }
 
 function onError(err) {
-    console.log(err);
-
     alert(err);
 }
 
