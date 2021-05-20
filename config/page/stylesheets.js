@@ -1,4 +1,7 @@
 function getStylesheets(url) {
+    if (!url)
+        return { stylesheets: [] }
+
     if (url.includes('?'))
         url = url.substring(0, url.indexOf('?'));
 
