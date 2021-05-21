@@ -3,14 +3,36 @@
 .pagination {
     display: flex;
     justify-content: space-between;
+
+    a {
+        text-decoration: none;
+
+        &:first-of-type {
+            margin-right: 1rem;
+        }
+    }
 }
 
 .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
     gap: 1rem;
 
-    .card {
-        @include card();
+    a {
+        max-width: 20rem;
+        height: 20rem;
+        border: 1px solid lightgray;
+        padding: 2em;
+        display: flex;
+        justify-content: center;
+        transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        flex-grow: 1;
+
+        img {
+            object-fit: contain;
+            width: auto;
+            height: auto;
+        }
     }
 }

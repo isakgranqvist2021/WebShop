@@ -12,6 +12,7 @@ async function template(req, res) {
         req.query.q = 'all';
     }
 
+    console.log(req.query);
 
     const result = await productMethods.findProducts({
         product_collection: req.query.q,

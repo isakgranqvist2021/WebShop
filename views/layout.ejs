@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/main.min.css">
-    <% config.stylesheets.forEach(stylesheet => { %><link rel="stylesheet" href="/public/css/<%= stylesheet %>"><% }) %>
+    <% config.stylesheets.forEach(stylesheet => { %>
+    <link rel="stylesheet" href="/public/css/<%= stylesheet %>">
+    <% }) %>
     <title><%= config.site_title %> - <%= title %> </title>
 </head>
 
@@ -14,9 +16,9 @@
 
     <%- include('partials/navbar') %>
 
-    <main>
-        <%- body %>
-    </main>
+<main>
+    <%- body %>
+</main>
 
     <script src="https://apis.google.com/js/platform.js"></script>
     <script src="/public/js/bundle.min.js"></script>

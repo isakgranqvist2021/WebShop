@@ -10,7 +10,7 @@ import configMiddleware from './config/config.mw'; // attach config object to re
 import dotenv from 'dotenv'; // .env variables
 
 import startAdding from './data/create-data';
-// startAdding()
+// startAdding(false, true);
 
 dotenv.config(); // initialize .env
 const app = express(); // initialize express

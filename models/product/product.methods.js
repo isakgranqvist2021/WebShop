@@ -16,17 +16,17 @@ async function saveProduct(data) {
 
 async function findProducts(filter) {
     return new Promise((resolve, reject) => {
-        let query = {};
+        let query = new Object();
+        let options = {
+            page: filter.page,
+            limit: 50
+        };
 
         if (filter.product_collection != 'all')
             query = { product_collection: filter.product_collection };
 
-
-
-        let options = {
-            page: filter.page,
-            limit: 10
-        }
+        if (filter.product_collection === 'on_sale')
+            query = { on_sale: true };
 
         ProductModel.paginate(query, options, (err, result) => {
             if (err) return reject(err);

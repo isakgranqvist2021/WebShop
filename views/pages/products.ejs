@@ -2,28 +2,40 @@
     <h1><%= q.replace('_', ' ') %></h1>
 
     <div class="pagination pb-3">
-        <% if(result.hasPrevPage) { %>
-            <a href="/products?q=<%=q %>&page=<%=result.prevPage%>">Previous Page</a>
-        <% } else { %>
-            <span></span>
-        <% } %> 
-        
-        <% if(result.hasNextPage) { %>
-            <a href="/products?q=<%=q %>&page=<%=result.nextPage%>">Next Page</a>
-        <% } else { %>
-            <span></span>
-        <% } %>
+        <div></div>
+        <div>
+            <a class="btn btn-primary<% if(!result.hasPrevPage) { %> disabled<% } %>" href="<% if(result.hasPrevPage) { %>/products?q=<%=q %>&page=<%=result.prevPage%> <% } %>">
+                Previous Page
+            </a>
+            <a class="btn btn-primary<% if(!result.hasNextPage){ %> disabled<% }  %>" href="<% if(result.hasNextPage) { %>/products?q=<%=q %>&page=<%=result.nextPage%><% } %>">
+                Next Page
+            </a>
+        </div>
     </div>
 
     <div class="products">
         <% result.docs.forEach((product, i) => { %>
-           <a class="card" href="/product/<%= product._id %>">
-              <img src="<%= product.variants[0].img.src %>" alt="<%= product.variants[0].img.alt %>">
-           </a>
+            <a href="/product/<%= product._id %>">
+                <img src="<%= product.variants[0].img.src %>" alt="<%= product.variants[0].img.alt %>">
+            </a>
         <% }) %>
     </div>
 
+    <div class="pagination pt-3">
+        <div>
+            <a class="btn btn-secondary" href="/collections">Back To Collections</a>
+        </div>
+
+        <div>
+            <a class="btn btn-primary<% if(!result.hasPrevPage) { %> disabled<% } %>" href="<% if(result.hasPrevPage) { %>/products?q=<%=q %>&page=<%=result.prevPage%> <% } %>">
+                Previous Page
+            </a>
+            <a class="btn btn-primary<% if(!result.hasNextPage){ %> disabled<% }  %>" href="<% if(result.hasNextPage) { %>/products?q=<%=q %>&page=<%=result.nextPage%><% } %>">
+                Next Page
+            </a>
+        </div>
+    </div>
+
     <div class="footer-navigation pt-3">
-        <a href="/collections">Back To Collections</a>
     </div>
 </div>

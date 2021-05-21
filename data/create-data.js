@@ -6,8 +6,13 @@ import * as cheerio from 'cheerio';
 import productMethods from '../models/product/product.methods';
 
 let collections = getCollections().collections.map(obj => obj.label);
-collections.shift(); // remove 'all' from the array
-collections.pop(); // remove 'on_sale' from the array
+collections[0] = 'clothes';
+collections[collections.length - 1] = 'cheap stuff';
+
+// collections.shift(); // remove 'all' from the array
+// collections.pop(); // remove 'on_sale' from the array
+
+let outputHTML = [];
 
 function getUrl(keywords) {
     return `https://www.google.com/search?q=${keywords.map(kw => kw).join('+')}&hl=en&sxsrf=ALeKk00gQDBQwS5F-UayJCXoFmYPSec5WQ:1621592042056&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjok4yNxdrwAhVCw4sKHdINAHUQ_AUoAXoECAEQAw&biw=1920&bih=1089`
@@ -26,21 +31,23 @@ async function fetchImages(url) {
 
                 for (let key in dom) {
                     if (dom[key].attribs) {
-                        // output.push(`<img src="${dom[key].attribs.src}">`);
+                        outputHTML.push(`<img src="${dom[key].attribs.src}">`);
                         output.push(dom[key].attribs.src);
                     }
                 }
 
-                return resolve(output);
-                // fs.writeFileSync('htmlfile.html', output.toString());
+                return resolve(output, outputHTML);
+
             }).catch(err => reject(err));
     })
 }
 
-function startAdding() {
+function startAdding(write_output, save_to_db) {
     // addProduct(undefined, false);
     let combineWith = ['comfortable', 'cool', 'nice', 'cheap', 'popular'];
-    let colors = ['red', 'blue', 'orange', 'black', 'white', 'dark blue', 'yellow']
+    let colors = ['red', 'blue', 'orange', 'black', 'white', 'dark blue', 'yellow', 'lightblue']
+    let onSale = new Array(95).fill(0); // 5 percent chance of being on sale :o
+    onSale.push(...[1, 1, 1, 1, 1]);
 
     collections.forEach(collection => {
         let keyword = combineWith[Math.floor(Math.random() * combineWith.length)];
@@ -57,7 +64,7 @@ function startAdding() {
                             title: `${keyword} ${color} ${collection}`,
                             product_collection: collection,
                             price: Math.round(Math.floor(Math.random() * 100)) + .99,
-                            on_sale: false,
+                            on_sale: onSale[Math.floor(Math.random() * onSale.length)] === 0 ? false : true,
                             description: [
                                 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
                                 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
@@ -74,14 +81,21 @@ function startAdding() {
                             ]
                         }
 
-                        productMethods.saveProduct(product)
-                            .then(result => {
-                                console.log('added', result._id);
-                            }).catch(err => console.log(err));
-                    })
+                        if (save_to_db) {
+                            productMethods.saveProduct(product)
+                                .then(result => {
+                                    console.log('added', result._id);
+                                }).catch(err => console.log(err));
+                        }
+
+                        if (write_output) {
+                            fs.writeFileSync('htmlfile.html', outputHTML.join('').toString())
+                        }
+                    });
+
 
                 }).catch(err => console.log('could not find any images'));
-        })
+        });
     });
 }
 
