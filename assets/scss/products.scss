@@ -1,5 +1,10 @@
 @import 'card';
 
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));

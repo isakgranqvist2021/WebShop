@@ -1,7 +1,6 @@
 import chai from 'chai';
 
 /* functions to be tested */
-
 import getCollections from '../config/page/collections';
 import getGeneralConfig from '../config/page/general-config';
 import getHomePage from '../config/page/home-page';
@@ -24,7 +23,7 @@ describe('Server Configuration', () => {
 
 describe('Site Configuration', () => {
 
-    it('return all collections & have correct data types', () => {
+    it('should return all collections & have correct data types', () => {
         let data = getCollections();
         expect(data).to.have.property('collections');
         data.collections.forEach(collection => {
@@ -39,7 +38,7 @@ describe('Site Configuration', () => {
         });
     });
 
-    it('return the general config for the site & have correct data types', () => {
+    it('should return the general config for the site & have correct data types', () => {
         let data = getGeneralConfig();
         expect(data).to.have.property('site_title');
         assert.typeOf(data.site_title, 'string');

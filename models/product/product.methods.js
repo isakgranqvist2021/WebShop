@@ -16,11 +16,22 @@ async function saveProduct(data) {
 
 async function findProducts(filter) {
     return new Promise((resolve, reject) => {
-        ProductModel.find(filter, (err, products) => {
-            if (err) return reject(err);
-            if (!products) return reject('zero products');
+        let query = {};
 
-            return resolve(products);
+        if (filter.product_collection != 'all')
+            query = { product_collection: filter.product_collection };
+
+
+
+        let options = {
+            page: filter.page,
+            limit: 10
+        }
+
+        ProductModel.paginate(query, options, (err, result) => {
+            if (err) return reject(err);
+            if (!result.docs) reject('zero docs');
+            resolve(result);
         });
     });
 }

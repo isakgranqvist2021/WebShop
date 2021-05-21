@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
+
 const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
@@ -33,5 +35,7 @@ const productSchema = new Schema({
     reviews: { type: Array, default: [] },
     variants: [variantSchema]
 });
+
+productSchema.plugin(mongoosePaginate);
 
 export default productSchema;

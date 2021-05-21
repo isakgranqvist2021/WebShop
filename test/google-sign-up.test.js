@@ -46,6 +46,21 @@ describe('User Sign Up Through Google', () => {
         assert.strictEqual(result.message, 'user already exists');
     });
 
+    it('sign up with bad email', async () => {
+        let result = await tools.HTTP({
+            url: '/sign-up/google-auth',
+            method: 'POST',
+            body: JSON.stringify({
+                email: 'isakwebdev@', // is alredy in the database
+                first_name: 'peter',
+                last_name: 'anderson'
+            }),
+            contentType: 'application/json'
+        }).then(response => response.json())
+
+        assert.strictEqual(result.message, 'email to weak');
+    });
+
     it('sign up without first_name', async () => {
         let result = await tools.HTTP({
             url: '/sign-up/google-auth',

@@ -12,13 +12,16 @@ async function template(req, res) {
         req.query.q = 'all';
     }
 
-    const products = await productMethods.findProducts({ product_collection: req.query.q })
 
+    const result = await productMethods.findProducts({
+        product_collection: req.query.q,
+        page: req.query.page || '1'
+    });
 
     return res.render('pages/products', {
         title: 'Products',
         q: req.query.q,
-        products: products,
+        result: result,
         config: req.headers.config,
         signedIn: req.session.uid != undefined ? true : false
     });

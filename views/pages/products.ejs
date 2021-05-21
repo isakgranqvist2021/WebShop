@@ -1,11 +1,29 @@
 <div class="container pt-5 pb-5">
     <h1><%= q.replace('_', ' ') %></h1>
 
+    <div class="pagination pb-3">
+        <% if(result.hasPrevPage) { %>
+            <a href="/products?q=<%=q %>&page=<%=result.prevPage%>">Previous Page</a>
+        <% } else { %>
+            <span></span>
+        <% } %> 
+        
+        <% if(result.hasNextPage) { %>
+            <a href="/products?q=<%=q %>&page=<%=result.nextPage%>">Next Page</a>
+        <% } else { %>
+            <span></span>
+        <% } %>
+    </div>
+
     <div class="products">
-        <% products.forEach(product => { %>
+        <% result.docs.forEach((product, i) => { %>
            <a class="card" href="/product/<%= product._id %>">
-                <%= product.title %>
+              <img src="<%= product.variants[0].img.src %>" alt="<%= product.variants[0].img.alt %>">
            </a>
         <% }) %>
+    </div>
+
+    <div class="footer-navigation pt-3">
+        <a href="/collections">Back To Collections</a>
     </div>
 </div>

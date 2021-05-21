@@ -53,6 +53,7 @@ function _signUpWithGoogle(req, res) {
     if (!validators.isOfLength(2, 50, req.body.first_name)) return res.json({ message: 'first name has to be between 2 and 50 characters', success: false, data: null });
     if (!req.body.last_name) return res.json({ message: 'missing last name', success: false, data: null });
     if (!validators.isOfLength(2, 50, req.body.last_name)) return res.json({ message: 'last name has to be between 2 and 50 characters', success: false, data: null });
+    if (!validators.emailValidator(req.body.email)) return res.json({ message: 'email to weak', success: false, data: null });
 
     userMethods.signUpWithGoogle(req.body)
         .then(result => {
