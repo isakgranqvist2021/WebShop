@@ -19,7 +19,7 @@ async function findProducts(filter) {
         let query = new Object();
         let options = {
             page: filter.page,
-            limit: 50
+            limit: 25
         };
 
         if (filter.product_collection != 'all')
