@@ -1,103 +1,42 @@
 import fetch from 'node-fetch';
 import getCollections from '../config/page/collections';
-import fs from 'fs';
-import * as cheerio from 'cheerio';
-
-import productMethods from '../models/product.model';
+import faker from 'faker';
 
 let collections = getCollections().collections.map(obj => obj.label);
-collections[0] = 'clothes';
-collections[collections.length - 1] = 'cheap stuff';
+collections.shift();
+collections.pop();
 
-// collections.shift(); // remove 'all' from the array
-// collections.pop(); // remove 'on_sale' from the array
+function onSale(probability) {
+    const values = new Array(probability).fill(0)
+        .push(...new Array(100 - probability).fill(1));
 
-let outputHTML = [];
-
-function getUrl(keywords) {
-    return `https://www.google.com/search?q=${keywords.map(kw => kw).join('+')}&hl=en&sxsrf=ALeKk00gQDBQwS5F-UayJCXoFmYPSec5WQ:1621592042056&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjok4yNxdrwAhVCw4sKHdINAHUQ_AUoAXoECAEQAw&biw=1920&bih=1089`
+    return values[Math.floor(Math.random() * values.length)] != 0;
 }
 
-async function fetchImages(url) {
-    const imgClass = "t0fcAb";
+function addProduct(n) {
+    for (let i = 0; i < n; i++) {
+        let product = {
+            title: faker.commerce.productName(),
+            product_collection: collections[Math.floor(Math.random() * collections.length)],
+            price: parseInt(faker.commerce.price(5, 10)) + .99,
+            on_sale: onSale(95),
+            description: new Array(Math.ceil(Math.random() * 5)).fill(0).map(_ => faker.commerce.productDescription()),
+            variants: new Array(Math.ceil(Math.random() * 5)).fill(0).map(_ =>
+            ({
+                color: faker.commerce.color(),
+                img: { src: faker.image.fashion(), alt: faker.lorem.paragraph(1) }
+            }))
+        }
 
-    return new Promise((resolve, reject) => {
-        fetch(url)
-            .then(response => response.text())
-            .then(html => {
-                let $ = cheerio.load(html);
-                let dom = $(`img[class="${imgClass}"]`);
-                let output = [];
-
-                for (let key in dom) {
-                    if (dom[key].attribs) {
-                        outputHTML.push(`<img src="${dom[key].attribs.src}">`);
-                        output.push(dom[key].attribs.src);
-                    }
-                }
-
-                return resolve(output, outputHTML);
-
-            }).catch(err => reject(err));
-    })
+        fetch('http://localhost:3000/add-product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        }).then(response => response.json())
+            .then(response => console.log('saved:', response.result._id));
+    }
 }
 
-function startAdding(write_output, save_to_db) {
-    // addProduct(undefined, false);
-    let combineWith = ['comfortable', 'cool', 'nice', 'cheap', 'popular'];
-    let colors = ['red', 'blue', 'orange', 'black', 'white', 'dark blue', 'yellow', 'lightblue']
-    let onSale = new Array(95).fill(0); // 5 percent chance of being on sale :o
-    onSale.push(...[1, 1, 1, 1, 1]);
-
-    collections.forEach(collection => {
-        let keyword = combineWith[Math.floor(Math.random() * combineWith.length)];
-
-        colors.forEach(color => {
-            let url = getUrl([keyword, color, 'mens', collection]);
-
-            fetchImages(url)
-                .then(images => {
-
-                    images.forEach(img => {
-
-                        let product = {
-                            title: `${keyword} ${color} ${collection}`,
-                            product_collection: collection,
-                            price: Math.round(Math.floor(Math.random() * 100)) + .99,
-                            on_sale: onSale[Math.floor(Math.random() * onSale.length)] === 0 ? false : true,
-                            description: [
-                                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-                                'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.'
-                            ],
-                            variants: [
-                                {
-                                    color,
-                                    img: {
-                                        src: img,
-                                        alt: `${keyword} ${color} ${collection}`
-                                    }
-                                }
-                            ]
-                        }
-
-                        if (save_to_db) {
-                            fetch('http://localhost:3000/add-product', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(product)
-                            }).then(response => response.json())
-                                .then(response => console.log('saved:', response._id));
-                        }
-                    });
-
-
-                }).catch(err => console.log('could not find any images'));
-        });
-    });
-}
-
-
-export default startAdding;
+addProduct(10);

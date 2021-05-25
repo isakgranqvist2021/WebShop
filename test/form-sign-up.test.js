@@ -231,7 +231,6 @@ describe('User Sign Up Through Form', () => {
     });
 
     it('sign up without matching passwords', async () => {
-
         let result = await tools.HTTP({
             url: '/sign-up/form-auth',
             method: 'POST',

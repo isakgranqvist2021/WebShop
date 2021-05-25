@@ -26,8 +26,7 @@ DB = ?
 
 ## populate database with random products
 ```js
-import startAdding from './data/create-data';
-// startAdding() <--- remove this comment
+npm run add:data
 ```
 
 ![Nodejs Logo](https://www.schemecolor.com/wallpaper?i=23516&desktop)

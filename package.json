@@ -7,7 +7,7 @@
     "start": "node --experimental-modules --es-module-specifier-resolution=node main.js",
     "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node main.js",
     "test": "mocha --experimental-modules --es-module-specifier-resolution=node",
-    "data": "node --experimental-modules --es-module-specifier-resolution=node data/create-data.js"
+    "add:data": "node --experimental-modules --es-module-specifier-resolution=node data/create-data.js"
   },
   "author": "Isak Granqvist",
   "license": "ISC",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "chai": "^4.3.4",
     "cheerio": "^1.0.0-rc.9",
+    "faker": "^5.5.3",
     "htmlparser": "^1.7.7",
     "mocha": "^8.4.0",
     "node-fetch": "^2.6.1"
