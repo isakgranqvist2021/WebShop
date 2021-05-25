@@ -1,4 +1,4 @@
-import userMethods from '../../models/user/user.methods';
+import userMethods from '../../models/user.model';
 import validators from '../../utils/validators';
 
 function template(req, res) {

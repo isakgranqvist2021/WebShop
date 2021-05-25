@@ -1,4 +1,4 @@
-import userMethods from '../../models/user/user.methods';
+import userMethods from '../../models/user.model';
 
 function template(req, res) {
     userMethods.findOneWithId(req.session.uid)

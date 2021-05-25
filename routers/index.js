@@ -13,6 +13,8 @@ import collectionsController from '../controllers/index/collections';
 import productsController from '../controllers/index/products';
 import productController from '../controllers/index/product';
 
+import testingControllers from '../controllers/index/testing';
+
 /* register all the routes and attach a controller */
 router.get('/', homeController.template);
 
@@ -28,6 +30,9 @@ router.get('/collections', collectionsController.template);
 
 router.get('/products', productsController.template);
 router.get('/product/:product_id', productController.template);
+
+router.post('/add-product', testingControllers.addProduct);
+router.get('/find-products', testingControllers.findProducts);
 
 /* export router variable to main.js */
 export default router;

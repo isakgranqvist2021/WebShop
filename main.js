@@ -9,7 +9,7 @@ import authMiddleware from './config/auth.mw'; // auth middlewares
 import configMiddleware from './config/config.mw'; // attach config object to request object
 import dotenv from 'dotenv'; // .env variables
 
-import startAdding from './data/create-data';
+// import startAdding from './data/create-data';
 // startAdding(false, true);
 
 dotenv.config(); // initialize .env

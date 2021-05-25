@@ -1,5 +1,5 @@
 import getCollections from '../../config/page/collections';
-import productMethods from '../../models/product/product.methods';
+import productMethods from '../../models/product.model';
 
 async function template(req, res) {
     if (!req.query.q || !getCollections().collections.map(c => c.label).includes(req.query.q)) {
@@ -12,10 +12,8 @@ async function template(req, res) {
         req.query.q = 'all';
     }
 
-    console.log(req.query);
-
     const result = await productMethods.findProducts({
-        product_collection: req.query.q,
+        product_collection: req.query.q.toLowerCase(),
         page: req.query.page || '1'
     });
 
