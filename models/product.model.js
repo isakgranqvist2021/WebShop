@@ -63,7 +63,24 @@ async function findProducts(filter) {
     });
 }
 
+async function findProduct(filter) {
+    return new Promise((resolve, reject) => {
+        ProductModel.findById(filter).populate({
+            path: 'variants',
+            model: 'Variant',
+            populate: {
+                path: 'img',
+                model: 'Image'
+            }
+        }).exec((err, product) => {
+            if (err) return reject(err);
+            return resolve(product);
+        });
+    });
+}
+
 export default {
     saveProduct,
-    findProducts
+    findProducts,
+    findProduct
 }

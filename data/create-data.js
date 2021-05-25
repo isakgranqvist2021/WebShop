@@ -3,7 +3,7 @@ import getCollections from '../config/page/collections';
 import fs from 'fs';
 import * as cheerio from 'cheerio';
 
-import productMethods from '../models/product/product.methods';
+import productMethods from '../models/product.model';
 
 let collections = getCollections().collections.map(obj => obj.label);
 collections[0] = 'clothes';
@@ -82,14 +82,14 @@ function startAdding(write_output, save_to_db) {
                         }
 
                         if (save_to_db) {
-                            productMethods.saveProduct(product)
-                                .then(result => {
-                                    console.log('added', result._id);
-                                }).catch(err => console.log(err));
-                        }
-
-                        if (write_output) {
-                            fs.writeFileSync('htmlfile.html', outputHTML.join('').toString())
+                            fetch('http://localhost:3000/add-product', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(product)
+                            }).then(response => response.json())
+                                .then(response => console.log('saved:', response._id));
                         }
                     });
 
