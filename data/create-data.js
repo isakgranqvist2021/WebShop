@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import getCollections from '../config/page/collections';
 import faker from 'faker';
+import scrapeImages from './get-images';
 
 let collections = getCollections().collections.map(obj => obj.label);
 collections.shift();
@@ -13,7 +14,7 @@ function onSale(probability) {
     return values[Math.floor(Math.random() * values.length)] != 0;
 }
 
-function addProduct(n) {
+function addProduct(n, save) {
     for (let i = 0; i < n; i++) {
         let product = {
             title: faker.commerce.productName(),
@@ -24,19 +25,30 @@ function addProduct(n) {
             variants: new Array(Math.ceil(Math.random() * 5)).fill(0).map(_ =>
             ({
                 color: faker.commerce.color(),
-                img: { src: faker.image.fashion(), alt: faker.lorem.paragraph(1) }
+                img: null
             }))
         }
 
-        fetch('http://localhost:3000/add-product', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(product)
-        }).then(response => response.json())
-            .then(response => console.log('saved:', response.result._id));
+        product.variants.forEach((variant, i) => {
+            variant.img = {
+                src: scrapeImages([product.product_collection, variant.color]),
+                alt: `variant ${i + 1}`
+            };
+        });
+
+        //console.log(product.variants);
+
+        if (save) {
+            fetch('http://localhost:3000/add-product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(product)
+            }).then(response => response.json())
+                .then(response => console.log('saved:', response.result._id));
+        }
     }
 }
 
-addProduct(10);
+addProduct(10, false);
