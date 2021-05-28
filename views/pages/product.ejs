@@ -1,20 +1,43 @@
 <div class="container pt-5 pb-5">
-    <a href="<%= referer %>">Go Back</a>
+    <div class="pb-5">
+        <a href="<%= referer %>">Go Back</a>
 
-    <h1><%= product.title %></h1>
-    <% product.variants.forEach(variant => { %>
-        <img src="<%= variant.img.src %>" />
-    <% }) %>
+        <h1><%= product.title %></h1>
+        <% product.variants.forEach(variant => { %>
+            <img src="<%= variant.img.src %>" />
+        <% }) %>
+        
+        <br/><br/>
     
-    <br/><br/>
+        <% product.description.forEach(paragraph => { %>
+            <p><%= paragraph %></p>
+        <% }) %>
+    
+        <h3 class="mb-4 mt-4">€<%= product.price %></h3>
+    
+        <a href="/add-to-cart/<%= product._id %>" class="btn btn-primary">
+            Add To Cart
+        </a>
+    </div>
 
-    <% product.description.forEach(paragraph => { %>
-        <p><%= paragraph %></p>
-    <% }) %>
+    <hr>
 
-    <h3 class="mb-4 mt-4">€<%= product.price %></h3>
-
-    <form method="POST" action="/cart/add/<%= product._id %>">
-        <button type="submit" class="btn btn-primary">Add To Cart</button>
-    </form>
+    <div class="pt-5 pb-5">
+        <h2>Simillar Products</h2>
+        <div class="simillar-products">
+            <div class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <% simillar_products.forEach(product => { %>
+                            <li class="splide__slide">
+                                <a href="/product/<%= product._id %>">
+                                    <img src="<%= product.variants[0].img.src %>" alt="<%= product.variants[0].img.alt %>">
+                                </a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

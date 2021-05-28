@@ -2,7 +2,8 @@
 @import 'colors';
 @import '~/../../../node_modules/bootstrap/scss/bootstrap.scss';
 @import 'nav';
-@import '_cart';
+@import 'cart';
+@import 'alerts';
 
 html,
 body {

@@ -1,0 +1,17 @@
+#alerts {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.alert {
+    margin-bottom: 0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+
+    i {
+        cursor: pointer;
+    }
+}

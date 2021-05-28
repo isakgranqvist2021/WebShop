@@ -4,7 +4,7 @@ function action(req, res) {
     req.session.destroy(function (err) {
         if (err) return res.redirect('/');
 
-        return res.redirect('/sign-in');
+        return res.redirect('/sign-in' + '?success=see you later!');
     });
 }
 

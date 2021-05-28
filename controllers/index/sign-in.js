@@ -25,13 +25,10 @@ function _signInWithForm(req, res) {
 
     userMethods.signInWithForm(req.body)
         .then(result => {
-            req.session.regenerate((err) => {
-                if (err) return res.redirect('/sign-in?err=internal error');
 
-                req.session.uid = result._id;
-                return res.redirect('/users/account?success=welcome ' + result.first_name);
-            });
 
+            req.session.uid = result._id;
+            return res.redirect('/users/account?success=welcome ' + result.first_name);
         }).catch(err => res.redirect('/sign-in?err=invalid email or password'));
 }
 

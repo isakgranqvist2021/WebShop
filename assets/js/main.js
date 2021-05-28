@@ -9,6 +9,15 @@ window.onload = function () {
     clearQuery(); // clear any queries in the address bar
     listenForClicks();
 
+    if (document.querySelector('.splide') != null) {
+        new Splide('.splide', {
+            type: 'loop',
+            perPage: 3,
+            perMove: 1,
+        }).mount();
+
+    }
+
     switch (window.location.pathname) {
         case '/sign-up': return saveForm();
 

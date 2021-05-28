@@ -4,7 +4,7 @@ function clearQuery() {
     const url = new URL(window.location); // everything after ?= in the address bar
 
     if (url.searchParams.get('err') != null) {
-        displayAlert({ type: 'error', message: url.searchParams.get('err') });
+        displayAlert({ type: 'danger', message: url.searchParams.get('err') });
     }
 
     if (url.searchParams.get('success') != null) {

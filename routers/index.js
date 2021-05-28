@@ -31,7 +31,8 @@ router.get('/products', productsController.template);
 router.get('/product/:product_id', productController.template);
 
 router.get('/cart', cartController.template);
-router.post('/cart/:action/:pid', cartController.action);
+router.get('/add-to-cart/:pid', cartController.action_add);
+router.get('/remove-from-cart/:pid', cartController.action_remove);
 
 router.post('/add-product', testingControllers.addProduct);
 router.get('/find-products', testingControllers.findProducts);

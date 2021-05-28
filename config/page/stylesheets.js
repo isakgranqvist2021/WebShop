@@ -6,7 +6,7 @@ function getStylesheets(url) {
         url = url.substring(0, url.indexOf('?'));
 
     if (new RegExp(/(\/product\/[a-zA-Z0-9].*)/).test(url))
-        return { stylesheets: ['page.min.css'] };
+        return { stylesheets: ['page.min.css', 'simillar-products.min.css'] };
 
     switch (url) {
         case '/': return { stylesheets: ['hero-section.min.css'] };
