@@ -12,11 +12,13 @@ import signUpController from '../controllers/index/sign-up';
 import collectionsController from '../controllers/index/collections';
 import productsController from '../controllers/index/products';
 import productController from '../controllers/index/product';
+import cartController from '../controllers/index/cart';
 
 import testingControllers from '../controllers/index/testing';
 
 /* register all the routes and attach a controller */
 router.get('/', homeController.template);
+router.get('/collections', collectionsController.template);
 
 // authType will be something like 'form-auth', 'google-auth' etc..
 router.get('/sign-in', signInController.template);
@@ -25,11 +27,11 @@ router.post('/sign-in/:authType', signInController.action);
 router.get('/sign-up', signUpController.template);
 router.post('/sign-up/:authType', signUpController.action);
 
-
-router.get('/collections', collectionsController.template);
-
 router.get('/products', productsController.template);
 router.get('/product/:product_id', productController.template);
+
+router.get('/cart', cartController.template);
+router.post('/add-to-cart/:pid', cartController.action);
 
 router.post('/add-product', testingControllers.addProduct);
 router.get('/find-products', testingControllers.findProducts);

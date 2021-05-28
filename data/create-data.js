@@ -14,29 +14,35 @@ function onSale(probability) {
     return values[Math.floor(Math.random() * values.length)] != 0;
 }
 
-function addProduct(n, save) {
+async function newVariant(product_collection, color) {
+    let image = await scrapeImages([product_collection, color])
+
+    return {
+        color: color,
+        img: {
+            src: image,
+            alt: 'Product Image'
+        }
+    }
+}
+
+async function addProduct(n, save) {
     for (let i = 0; i < n; i++) {
+        let product_collection = collections[Math.floor(Math.random() * collections.length)];
+
         let product = {
             title: faker.commerce.productName(),
-            product_collection: collections[Math.floor(Math.random() * collections.length)],
+            product_collection,
             price: parseInt(faker.commerce.price(5, 10)) + .99,
             on_sale: onSale(95),
             description: new Array(Math.ceil(Math.random() * 5)).fill(0).map(_ => faker.commerce.productDescription()),
-            variants: new Array(Math.ceil(Math.random() * 5)).fill(0).map(_ =>
-            ({
-                color: faker.commerce.color(),
-                img: null
-            }))
+            variants: [
+                await newVariant(product_collection, faker.commerce.color()),
+                await newVariant(product_collection, faker.commerce.color()),
+                await newVariant(product_collection, faker.commerce.color()),
+                await newVariant(product_collection, faker.commerce.color())
+            ]
         }
-
-        product.variants.forEach((variant, i) => {
-            variant.img = {
-                src: scrapeImages([product.product_collection, variant.color]),
-                alt: `variant ${i + 1}`
-            };
-        });
-
-        //console.log(product.variants);
 
         if (save) {
             fetch('http://localhost:3000/add-product', {
@@ -51,4 +57,5 @@ function addProduct(n, save) {
     }
 }
 
-addProduct(10, false);
+// how many products to add, save them to database?
+addProduct(50, true);

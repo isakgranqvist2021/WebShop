@@ -9,4 +9,10 @@
     <% product.description.forEach(paragraph => { %>
         <p><%= paragraph %></p>
     <% }) %>
+
+    <p>€<%= product.price %></p>
+
+    <form method="POST" action="/add-to-cart/<%= product._id %>">
+        <button type="submit" class="btn btn-primary">Add To Cart</button>
+    </form>
 </div>
