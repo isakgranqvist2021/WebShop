@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
-import variantMethods from './variant.model';
-import imageMethods from './image.model';
 
 const Schema = mongoose.Schema;
 
@@ -72,37 +70,16 @@ async function findProduct(filter) {
                 path: 'img',
                 model: 'Image'
             }
-        }).exec((err, product) => {
+        }).lean().exec((err, product) => {
             if (err) return reject(err);
             return resolve(product);
         });
     });
 }
 
-async function populateCart(cart) {
-    return new Promise((resolve, reject) => {
-        ProductModel.find({
-            _id: {
-                $in: cart
-            }
-        }).populate({
-            path: 'variants',
-            model: 'Variant',
-            populate: {
-                path: 'img',
-                model: 'Image'
-            }
-        }).exec((err, products) => {
-            if (err) return reject(err);
-            if (!products) return reject('zero products');
-            return resolve(products);
-        })
-    });
-}
 
 export default {
     saveProduct,
     findProducts,
-    findProduct,
-    populateCart
+    findProduct
 }

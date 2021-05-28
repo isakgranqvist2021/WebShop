@@ -1,4 +1,6 @@
 <div class="container pt-5 pb-5">
+    <a href="<%= referer %>">Go Back</a>
+
     <h1><%= product.title %></h1>
     <% product.variants.forEach(variant => { %>
         <img src="<%= variant.img.src %>" />
@@ -10,9 +12,9 @@
         <p><%= paragraph %></p>
     <% }) %>
 
-    <p>€<%= product.price %></p>
+    <h3 class="mb-4 mt-4">€<%= product.price %></h3>
 
-    <form method="POST" action="/add-to-cart/<%= product._id %>">
+    <form method="POST" action="/cart/add/<%= product._id %>">
         <button type="submit" class="btn btn-primary">Add To Cart</button>
     </form>
 </div>

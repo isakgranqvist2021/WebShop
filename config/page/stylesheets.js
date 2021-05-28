@@ -15,6 +15,7 @@ function getStylesheets(url) {
         case '/collections': return { stylesheets: ['page.min.css', 'collections.min.css'] };
         case '/products': return { stylesheets: ['page.min.css', 'products.min.css'] };
         case '/users/account': return { stylesheets: ['page.min.css'] };
+        case '/cart': return { stylesheets: ['page.min.css', 'checkout.min.css'] }
         default: return { stylesheets: [] };
     }
 }
