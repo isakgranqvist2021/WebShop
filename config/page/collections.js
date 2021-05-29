@@ -26,6 +26,10 @@ function getCollections() {
                 thumbnail: { src: '', alt: '' }
             },
             {
+                label: 'accessories',
+                thumbnail: { src: '', alt: '' }
+            },
+            {
                 label: 'on_sale',
                 thumbnail: { src: '', alt: '' }
             }

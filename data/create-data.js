@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import getCollections from '../config/page/collections';
-import faker from 'faker';
 import scrapeImages from './get-images';
+import fs from 'fs';
 
 let collections = getCollections().collections.map(obj => obj.label);
 collections.shift();
@@ -40,31 +40,14 @@ async function addProduct(product, save) {
     }
 }
 
-// product data, save them to database?
-[
-    {
-        title: 'Woolen Hat',
-        product_collection: 'Hats',
-        price: 6.99,
-        on_sale: false,
-        description: [
-            'Trendy Men\'s Casual Fedora Hat Panama Cap Korean Style Male Autumn Winter Outdoor Soft Warm Woolen Hat Top Hat Fashion Accessories'
-        ],
-        variants: [
-            {
-                color: 'Coffe',
-                img: { src: 'https://canary.contestimg.wish.com/api/webimage/59ccc4244671c17bccdb8a36-1-large.jpg', alt: 'Coffe Variant' }
-            },
-            {
-                color: 'Gray',
-                img: { src: 'https://canary.contestimg.wish.com/api/webimage/59ccc4244671c17bccdb8a36-3-large.jpg', alt: 'Gray Variant' }
-            },
-            {
-                color: 'Navy Blue',
-                img: { src: 'https://canary.contestimg.wish.com/api/webimage/59ccc4244671c17bccdb8a36-10-large.jpg', alt: 'Navy Blue Variant' }
-            }
-        ]
-    }
-].forEach(product => {
-    addProduct(product, true);
+
+// only add 1000 products at a time to prevent call stack exceeded error
+fs.readFile('./data/output.json', 'utf-8', (err, data) => {
+    if (err) console.log(err);
+    let products = JSON.parse(data);
+    products.slice(1000, 2000).forEach(product => {
+        addProduct(product, true);
+    });
 });
+
+
