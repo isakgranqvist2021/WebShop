@@ -77,9 +77,12 @@ async function findProduct(filter) {
     });
 }
 
-async function findWithLimit(filter, limit) {
+async function findWithLimit(config) {
     return new Promise((resolve, reject) => {
-        ProductModel.find(filter).limit(limit).populate({
+        ProductModel.find({
+            product_collection: config.product_collection,
+            _id: { $ne: config.exclude }
+        }).limit(config.limit).populate({
             path: 'variants',
             model: 'Variant',
             populate: {

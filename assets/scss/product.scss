@@ -1,0 +1,27 @@
+.go-back {
+    position: absolute;
+}
+
+.image-picker {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+
+    img {
+        max-width: 64px;
+        max-height: 64px;
+        object-fit: contain;
+        cursor: pointer;
+        transition: all 225ms ease;
+
+        &:hover {
+            transform: scale(.91);
+        }
+
+        &:not(:last-of-type) {
+            margin-right: 1rem;
+        }
+    }
+}

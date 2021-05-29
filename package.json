@@ -7,7 +7,9 @@
     "start": "node --experimental-modules --es-module-specifier-resolution=node main.js",
     "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node main.js",
     "test": "mocha --experimental-modules --es-module-specifier-resolution=node",
-    "add:data": "node --experimental-modules --es-module-specifier-resolution=node data/create-data.js"
+    "add:products": "node --experimental-modules --es-module-specifier-resolution=node data/create-data.js",
+    "add:users": "",
+    "add:orders": ""
   },
   "author": "Isak Granqvist",
   "license": "ISC",

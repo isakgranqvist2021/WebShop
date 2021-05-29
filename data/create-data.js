@@ -26,36 +26,45 @@ async function newVariant(product_collection, color) {
     }
 }
 
-async function addProduct(n, save) {
-    for (let i = 0; i < n; i++) {
-        let product_collection = collections[Math.floor(Math.random() * collections.length)];
-
-        let product = {
-            title: faker.commerce.productName(),
-            product_collection,
-            price: parseInt(faker.commerce.price(5, 10)) + .99,
-            on_sale: onSale(95),
-            description: new Array(Math.ceil(Math.random() * 5)).fill(0).map(_ => faker.commerce.productDescription()),
-            variants: [
-                await newVariant(product_collection, faker.commerce.color()),
-                await newVariant(product_collection, faker.commerce.color()),
-                await newVariant(product_collection, faker.commerce.color()),
-                await newVariant(product_collection, faker.commerce.color())
-            ]
-        }
-
-        if (save) {
-            fetch('http://localhost:3000/add-product', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(product)
-            }).then(response => response.json())
-                .then(response => console.log('saved:', response.result._id));
-        }
+async function addProduct(product, save) {
+    // let product_collection = collections[Math.floor(Math.random() * collections.length)];
+    if (save) {
+        fetch('http://localhost:3000/add-product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        }).then(response => response.json())
+            .then(response => console.log('saved:', response.result._id));
     }
 }
 
-// how many products to add, save them to database?
-addProduct(50, true);
+// product data, save them to database?
+[
+    {
+        title: 'Woolen Hat',
+        product_collection: 'Hats',
+        price: 6.99,
+        on_sale: false,
+        description: [
+            'Trendy Men\'s Casual Fedora Hat Panama Cap Korean Style Male Autumn Winter Outdoor Soft Warm Woolen Hat Top Hat Fashion Accessories'
+        ],
+        variants: [
+            {
+                color: 'Coffe',
+                img: { src: 'https://canary.contestimg.wish.com/api/webimage/59ccc4244671c17bccdb8a36-1-large.jpg', alt: 'Coffe Variant' }
+            },
+            {
+                color: 'Gray',
+                img: { src: 'https://canary.contestimg.wish.com/api/webimage/59ccc4244671c17bccdb8a36-3-large.jpg', alt: 'Gray Variant' }
+            },
+            {
+                color: 'Navy Blue',
+                img: { src: 'https://canary.contestimg.wish.com/api/webimage/59ccc4244671c17bccdb8a36-10-large.jpg', alt: 'Navy Blue Variant' }
+            }
+        ]
+    }
+].forEach(product => {
+    addProduct(product, true);
+});

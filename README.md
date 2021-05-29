@@ -26,7 +26,7 @@ DB = ?
 
 ## populate database with random products
 ```js
-npm run add:data
+npm run add:products
 ```
 
 ![Nodejs Logo](https://www.schemecolor.com/wallpaper?i=23516&desktop)
