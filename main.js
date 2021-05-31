@@ -14,6 +14,7 @@ const app = express(); // initialize express
 
 import index from './routers/index'; // every route that can be accessed without authorization
 import users from './routers/users'; // every route that can only be accessed with authorization
+import pathNotFound from './routers/404';
 
 /* connect to mongodb */
 mongoose.connect(config.DB_URI, {
@@ -78,7 +79,7 @@ app.use((req, res, next) => {
 /* router setup - responsible for the controllers folder */
 app.use('/', authMiddleware.hasNotAuth, index); // every route that can be accessed without authorization
 app.use('/users', authMiddleware.hasAuth, users); // every route that can only be accessed with authorization
-
+app.use('*', pathNotFound.template);
 
 app.listen(config.PORT, () => { // start server and listen for incomming http requests
     console.log('Server listening on', config.PORT);
