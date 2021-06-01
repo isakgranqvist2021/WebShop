@@ -7,10 +7,10 @@ const UserModel = mongoose.model('User', new Schema({
     email: { type: String, required: true, unique: true },
     first_name: { type: String, required: true, unique: false, min: 2, max: 50 },
     last_name: { type: String, required: true, unique: false, min: 2, max: 50 },
-    country: { type: String, required: false },
-    address: { type: String, required: false },
-    state: { type: String, required: false },
-    zip: { type: String, required: false },
+    country: { type: String, required: false, default: '' },
+    address: { type: String, required: false, default: '' },
+    state: { type: String, required: false, default: '' },
+    zip: { type: String, required: false, default: '' },
     auth_type: { type: String, required: true, unique: false },
     password: { type: String, required: false, unique: false }
 }));
