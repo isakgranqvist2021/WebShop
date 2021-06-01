@@ -14,6 +14,7 @@ const app = express(); // initialize express
 
 import index from './routers/index'; // every route that can be accessed without authorization
 import users from './routers/users'; // every route that can only be accessed with authorization
+import api from './routers/api';
 import pathNotFound from './routers/404';
 
 /* connect to mongodb */
@@ -75,6 +76,7 @@ app.use(configMiddleware.setupConfig); // populates the config header with usefu
 /* router setup - responsible for the controllers folder */
 app.use('/', authMiddleware.hasNotAuth, index); // every route that can be accessed without authorization
 app.use('/users', authMiddleware.hasAuth, configMiddleware.populateUser, users); // every route that can only be accessed with authorization
+app.use('/api', api);
 app.use('*', pathNotFound.template);
 
 app.listen(config.PORT, () => { // start server and listen for incomming http requests

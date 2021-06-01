@@ -1,39 +1,24 @@
-import clearQuery from './Components/ClearQuery';
-import saveForm from './Components/SaveForm';
-import listenForClicks from './Components/OpenSidenav';
-import selectImage from './Components/SelectImage';
-
-
-function initSplide() {
-    if (document.querySelector('.splide') != null) {
-        new Splide('.splide', {
-            type: 'loop',
-            perPage: 3,
-            perMove: 1,
-            pagination: false,
-            drag: true,
-            breakpoints: {
-                992: {
-                    perPage: 2
-                },
-                600: {
-                    perPage: 1,
-                }
-            }
-        }).mount();
-    }
-}
+import Clear from './Components/Clear';
+import Form from './Components/Form';
+import Products from './Components/Products';
+import Select from './Components/Select';
+import Sidenav from './Components/Sidenav';
+import Slider from './Components/Slider';
 
 // gets executed when the document has loaded
 window.onload = () => {
-    clearQuery(); // clear any queries in the address bar
-    listenForClicks();
-    selectImage();
-    initSplide();
+    let currentURL = window.location.pathname;
+    console.log(currentURL);
 
-    if (window.location.pathname == '/sign-up')
-        saveForm();
+    new Clear().init();
+    new Sidenav().init();
 
-    if (window.location.pathname != '/sign-up')
-        sessionStorage.removeItem('formData');
+    if (currentURL === '/sign-in') {
+        new Form().init();
+    } else if (new RegExp(/(\/product\/[a-zA-Z0-9].*)/).test(currentURL)) {
+        new Select().init();
+        new Slider().init();
+    } else if (currentURL === '/products') {
+        new Products().init();
+    }
 }

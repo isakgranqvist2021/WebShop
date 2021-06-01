@@ -1,26 +1,29 @@
-function variables() {
-    return {
-        em: document.getElementById('email'),
-        fn: document.getElementById('first_name'),
-        ln: document.getElementById('last_name'),
-        sb: document.querySelector('.btn-primary'),
-        f: document.querySelector('.row.g-3'),
-        fd: () => {
-            if (sessionStorage.getItem('formData') != null)
-                // only attempt to parse sessionStorage if it's present else an error will be thrown
-                return JSON.parse(sessionStorage.getItem('formData'));
+class Form {
+    variables() {
+        return {
+            em: document.getElementById('email'),
+            fn: document.getElementById('first_name'),
+            ln: document.getElementById('last_name'),
+            sb: document.querySelector('.btn-primary'),
+            f: document.querySelector('.row.g-3'),
+            fd: () => {
+                if (sessionStorage.getItem('formData') != null)
+                    // only attempt to parse sessionStorage if it's present else an error will be thrown
+                    return JSON.parse(sessionStorage.getItem('formData'));
 
-            return null;
+                return null;
+            }
         }
     }
-}
 
-function saveForm() {
-    if (window.location.pathname === '/sign-up') {
+    init() {
+        if (window.location.pathname != '/sign-in')
+            return sessionStorage.removeItem('formData');
+
         // save form data that isn't sensetive to reduce the annoyment factor
         // it's super annoying especially on mobile when you click submit and you have to re-enter all the data
 
-        const { em, fn, ln, sb, f, fd } = variables();
+        const { em, fn, ln, sb, f, fd } = this.variables();
         let fdp = fd();
 
         if (fdp != null) {
@@ -49,4 +52,4 @@ function saveForm() {
     }
 }
 
-export default saveForm;
+export default Form;

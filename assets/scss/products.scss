@@ -1,25 +1,5 @@
 @import 'card';
 
-.pagination {
-    display: flex;
-
-    &.pagination-top {
-        justify-content: flex-end;
-    }
-
-    &.pagination-btm {
-        justify-content: space-between;
-    }
-
-    a {
-        text-decoration: none;
-
-        &:first-of-type {
-            margin-right: 1rem;
-        }
-    }
-}
-
 .products {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -76,60 +56,6 @@
 }
 
 @media only screen and(max-width: 768px) {
-    .pagination {
-
-        &.pagination-top {
-            div {
-                width: 100%;
-                display: flex;
-
-                a {
-                    flex-grow: 1;
-
-                    &:first-child {
-                        margin: 0 .5rem 0 0;
-                    }
-
-                    &:last-child {
-                        margin: 0 0 0 .5rem;
-                    }
-                }
-            }
-        }
-
-        &.pagination-btm {
-            flex-direction: column-reverse;
-
-            div {
-                width: 100%;
-
-                &:first-child {
-                    padding-top: 1rem;
-
-                    a {
-                        width: 100%;
-                    }
-                }
-
-                &:last-child {
-                    display: flex;
-
-                    a {
-                        flex-grow: 1;
-
-                        &:first-child {
-                            margin: 0 .5rem 0 0;
-                        }
-
-                        &:last-child {
-                            margin: 0 0 0 .5rem;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     .products {
         grid-template-columns: 1fr;
     }

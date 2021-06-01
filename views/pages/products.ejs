@@ -1,20 +1,39 @@
 <div class="container pt-5 pb-5">
-    <h1>
-        <div class="display-2"><%= q.replace('_', ' ') %></div>
-        <span class="badge bg-secondary">Page: <%= p %></span>
-    </h1>
+    <div class="products" id="app-products"></div>
+    
+    <!-- <div class="d-flex justify-content-between align-items-center">
+        <h1><%= q.replace('_', ' ') %></h1>
+        <ul class="pagination">
+            <li class="page-item <% if(!result.hasPrevPage) { %>disabled<%} %>">
+                <% if(!result.hasPrevPage) { %>
+                    <span class="page-link">Previous</span>
+                <% } else { %>
+                    <a class="page-link" href="/products?q=<%=q %>&page=<%= result.prevPage %>">Previous</a>
+                <% } %>
+            </li>    
+    
+            <% if(result.prevPage) { %>
+                <li class="page-item"><a class="page-link" href="/products?q=<%= q %>&page=<%= result.prevPage %>"><%= result.prevPage %></a></li>
+            <% } %>
+            
+            <li class="page-item active">
+                <span class="page-link"><%= p %></span>
+            </li>
 
-    <div class="pagination pb-3 pagination-top">
-        <div>
-            <a class="btn btn-primary<% if(!result.hasPrevPage) { %> disabled<% } %>" href="<% if(result.hasPrevPage) { %>/products?q=<%=q %>&page=<%=result.prevPage%> <% } %>">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <a class="btn btn-primary<% if(!result.hasNextPage){ %> disabled<% }  %>" href="<% if(result.hasNextPage) { %>/products?q=<%=q %>&page=<%=result.nextPage%><% } %>">
-                <i class="fas fa-chevron-right"></i>
-            </a>
-        </div>
+            <% if(result.nextPage) { %>
+                <li class="page-item"><a class="page-link" href="/products?q=<%= q %>&page=<%= result.nextPage %>"><%= result.nextPage %></a></li>
+            <% } %>
+   
+            <li class="page-item <% if(!result.nextPage) { %>disabled<% } %>">
+                <% if(!result.nextPage) { %>
+                    <span class="page-link">Next</span>
+                <% } else { %>
+                    <a class="page-link" href="/products?q=<%= q %>&page=<%= result.nextPage %>">Next</a>
+                <% } %>
+            </li>    
+        </ul>
     </div>
-
+    
     <div class="products">     
         <% result.docs.forEach((product, i) => { %>
             <a href="/product/<%= product._id %>">
@@ -30,23 +49,39 @@
         <% }) %>
     </div>
 
-    <div class="pagination pagination-btm pt-3">
-        <div>
-            <a class="btn btn-secondary" href="/collections">
-                Back To Collections
-            </a>
-        </div>
 
-        <div>
-            <a class="btn btn-primary<% if(!result.hasPrevPage) { %> disabled<% } %>" href="<% if(result.hasPrevPage) { %>/products?q=<%=q %>&page=<%=result.prevPage%> <% } %>">
-                <i class="fas fa-chevron-left"></i>
-            </a>
-            <a class="btn btn-primary<% if(!result.hasNextPage){ %> disabled<% }  %>" href="<% if(result.hasNextPage) { %>/products?q=<%=q %>&page=<%=result.nextPage%><% } %>">
-                <i class="fas fa-chevron-right"></i>
-            </a>
-        </div>
-    </div>
+    <div class="d-flex justify-content-between align-items-center pt-4">
+        <a class="btn btn-secondary" href="/collections">
+            Back To Collections
+        </a>
+        <ul class="pagination mb-0">
+            <li class="page-item <% if(!result.hasPrevPage) { %>disabled<%} %>">
+                <% if(!result.hasPrevPage) { %>
+                    <span class="page-link">Previous</span>
+                <% } else { %>
+                    <a class="page-link" href="/products?q=<%=q %>&page=<%= result.prevPage %>">Previous</a>
+                <% } %>
+            </li>    
+    
+            <% if(result.prevPage) { %>
+                <li class="page-item"><a class="page-link" href="/products?q=<%= q %>&page=<%= result.prevPage %>"><%= result.prevPage %></a></li>
+            <% } %>
+            
+            <li class="page-item active">
+                <span class="page-link"><%= p %></span>
+            </li>
 
-    <div class="footer-navigation pt-3">
-    </div>
+            <% if(result.nextPage) { %>
+                <li class="page-item"><a class="page-link" href="/products?q=<%= q %>&page=<%= result.nextPage %>"><%= result.nextPage %></a></li>
+            <% } %>
+   
+            <li class="page-item <% if(!result.nextPage) { %>disabled<% } %>">
+                <% if(!result.nextPage) { %>
+                    <span class="page-link">Next</span>
+                <% } else { %>
+                    <a class="page-link" href="/products?q=<%= q %>&page=<%= result.nextPage %>">Next</a>
+                <% } %>
+            </li>    
+        </ul>
+    </div> -->
 </div>
