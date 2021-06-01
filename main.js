@@ -20,7 +20,8 @@ import pathNotFound from './routers/404';
 mongoose.connect(config.DB_URI, {
     useNewUrlParser: true, // current URL string parser is deprecated, and will be removed in a future version. 
     useUnifiedTopology: true, // Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version.
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: true
 }, (err) => { // check if an error has occured
     if (err) // if error then exit the application
         process.exit(1);

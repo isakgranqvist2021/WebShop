@@ -47,10 +47,6 @@ function saveForm() {
             f.submit();
         });
     }
-
-    if (window.location.pathname != '/sign-up')
-        // the if statement at the end of the function
-        sessionStorage.removeItem('formData');
 }
 
 export default saveForm;

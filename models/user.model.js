@@ -36,8 +36,6 @@ async function signUpWithForm(data) {
 }
 
 async function signInWithForm(data) {
-    console.log(data);
-
     try {
         const user = await UserModel.findOne({ email: data.email });
 
@@ -50,7 +48,7 @@ async function signInWithForm(data) {
         return user;
 
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 
@@ -68,7 +66,7 @@ async function signUpWithGoogle(data) {
         }).save();
 
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 
@@ -76,7 +74,7 @@ async function signInWithGoogle(data) {
     try {
         return await UserModel.findOne({ email: data.toLowerCase() });
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 
@@ -86,7 +84,7 @@ async function _duplication(email) {
     try {
         return await UserModel.findOne({ email: email.toLowerCase() });
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 
@@ -94,7 +92,23 @@ async function findOneWithId(id) { // find a user with _id
     try {
         return UserModel.findOne({ _id: id });
     } catch (err) {
-        return err;
+        return Promise.reject(err);
+    }
+}
+
+async function updateOne(id, data) {
+    try {
+        return await UserModel.findByIdAndUpdate(id, data);
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+async function deleteOne(id) {
+    try {
+        return await UserModel.findByIdAndRemove(id);
+    } catch (err) {
+        return Promise.reject(err);
     }
 }
 
@@ -103,5 +117,7 @@ export default {
     signInWithForm,
     signUpWithGoogle,
     signInWithGoogle,
-    findOneWithId
+    findOneWithId,
+    updateOne,
+    deleteOne
 };

@@ -22,7 +22,7 @@ async function template(req, res) {
     return res.render('pages/products', {
         title: 'Products',
         q: req.query.q,
-        p: req.query.page,
+        p: req.query.page || '1',
         user: req.session.user,
         result: result,
         config: req.headers.config

@@ -10,7 +10,7 @@ async function saveVariant(data) {
     try {
         return await new VariantModel(data).save();
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 

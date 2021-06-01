@@ -10,7 +10,7 @@ async function saveImage(data) {
     try {
         return await new ImgModel(data).save();
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 

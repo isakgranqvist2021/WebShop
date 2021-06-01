@@ -16,6 +16,6 @@ import signOutController from '../controllers/users/sign-out';
 router.get('/account', accountController.template);
 router.post('/account', accountController.action);
 router.get('/sign-out', signOutController.action);
-
+router.post('/delete-account', accountController.action_delete_account);
 /* export router variable to main.js */
 export default router;

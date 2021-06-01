@@ -33,4 +33,7 @@ window.onload = () => {
 
     if (window.location.pathname == '/sign-up')
         saveForm();
+
+    if (window.location.pathname != '/sign-up')
+        sessionStorage.removeItem('formData');
 }

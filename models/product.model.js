@@ -25,7 +25,7 @@ async function saveProduct(data) {
     try {
         return await new ProductModel(data).save();
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 
@@ -53,7 +53,7 @@ async function findProducts(filter) {
 
         return await ProductModel.paginate(query, options);
     } catch (err) {
-        return err
+        return Promise.reject(err);
     }
 }
 
@@ -69,7 +69,7 @@ async function findProduct(filter) {
         }).lean().exec();
 
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 
@@ -88,7 +88,7 @@ async function findWithLimit(config) {
         }).exec();
 
     } catch (err) {
-        return err;
+        return Promise.reject(err);
     }
 }
 
