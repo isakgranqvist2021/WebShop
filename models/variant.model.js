@@ -7,13 +7,11 @@ const VariantModel = mongoose.model('Variant', new Schema({
 }));
 
 async function saveVariant(data) {
-    return new Promise((resolve, reject) => {
-        new VariantModel(data)
-            .save((err, newVariant) => {
-                if (err) return reject(err);
-                return resolve(newVariant._id);
-            });
-    });
+    try {
+        return await new VariantModel(data).save();
+    } catch (err) {
+        return err;
+    }
 }
 
 export default { saveVariant };

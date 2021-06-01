@@ -1,8 +1,8 @@
 function template(req, res) {
     return res.render('pages/collections', {
         title: 'Collections',
+        user: req.session.user,
         config: req.headers.config,
-        signedIn: req.session.uid != undefined ? true : false
     });
 }
 

@@ -71,14 +71,9 @@ app.use('/assets', express.static('node_modules/bootstrap')); // where bootstrap
 
 app.use(configMiddleware.setupConfig); // populates the config header with useful data
 
-app.use((req, res, next) => {
-    console.log(req.session.cart);
-    return next();
-});
-
 /* router setup - responsible for the controllers folder */
 app.use('/', authMiddleware.hasNotAuth, index); // every route that can be accessed without authorization
-app.use('/users', authMiddleware.hasAuth, users); // every route that can only be accessed with authorization
+app.use('/users', authMiddleware.hasAuth, configMiddleware.populateUser, users); // every route that can only be accessed with authorization
 app.use('*', pathNotFound.template);
 
 app.listen(config.PORT, () => { // start server and listen for incomming http requests

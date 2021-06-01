@@ -1,5 +1,7 @@
 import productMethods from '../../models/product.model';
+import data from '../../utils/data';
 
+// helper functions
 function calculateTotal(p) {
     let total = 0;
     p.forEach(pr => {
@@ -9,32 +11,30 @@ function calculateTotal(p) {
     return Math.ceil(total);
 }
 
-async function template(req, res) {
-    console.log(req.session.cart);
-
-    if (!req.session.cart) {
-        return res.render('pages/cart', {
-            title: 'Cart',
-            config: req.headers.config,
-            totalCost: 0,
-            cart: [],
-            signedIn: req.session.uid != undefined ? true : false
-        });
-    }
-
-    Promise.all(req.session.cart.map(async (product) =>
-    ({
+async function getProduct(product) {
+    return {
         ...await productMethods.findProduct(product._id),
         qty: product.qty
-    })
-    )).then(cart => {
-        return res.render('pages/cart', {
-            title: 'Cart',
-            config: req.headers.config,
-            totalCost: calculateTotal(cart.map(product => ({ price: product.price, qty: product.qty }))),
-            cart: cart,
-            signedIn: req.session.uid != undefined ? true : false
-        });
+    };
+}
+
+async function template(req, res) {
+    let cart = [];
+    let totalCost = 0;
+
+    if (req.session.cart) {
+        cart = await Promise.all(req.session.cart.map(product => getProduct(product)));
+        totalCost = calculateTotal(cart.map(product => ({ price: product.price, qty: product.qty })))
+    }
+
+    return res.render('pages/cart', {
+        title: 'Cart',
+        config: req.headers.config,
+        totalCost: totalCost,
+        cart: cart,
+        data: {
+            countries: data.countries()
+        }
     });
 }
 

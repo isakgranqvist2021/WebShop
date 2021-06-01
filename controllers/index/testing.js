@@ -13,14 +13,13 @@ async function addProduct(req, res) {
 
     const result = await productMethods.saveProduct(req.body);
 
-    res.json({ result });
-
+    return res.json({ result });
 }
 
 async function findProducts(req, res) {
     let products = await productMethods.findProducts({ product_collection: 'all' });
 
-    res.json(products);
+    return res.json(products);
 }
 
 /*

@@ -7,109 +7,95 @@ const UserModel = mongoose.model('User', new Schema({
     email: { type: String, required: true, unique: true },
     first_name: { type: String, required: true, unique: false, min: 2, max: 50 },
     last_name: { type: String, required: true, unique: false, min: 2, max: 50 },
+    country: { type: String, required: false },
+    address: { type: String, required: false },
+    state: { type: String, required: false },
+    zip: { type: String, required: false },
     auth_type: { type: String, required: true, unique: false },
     password: { type: String, required: false, unique: false }
 }));
 
 /* form auth */
 async function signUpWithForm(data) {
-    return new Promise((resolve, reject) => {
-        _duplication(data.email) // check for duplication, some nasty errors might occur if the same email is used twice
-            .then(() => {
-                bcrypt.genSalt(10, (err, salt) => {
-                    if (err) return reject(err);
+    try {
+        await _duplication(data.email); // check for duplication, some nasty errors might occur if the same email is used twice
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(data.password, salt);
 
-                    bcrypt.hash(data.password, salt, (err, hash) => {
-                        if (err) return reject(err);
+        return await new UserModel({
+            email: data.email.toLowerCase(),
+            first_name: data.first_name.toLowerCase(),
+            last_name: data.last_name.toLowerCase(),
+            password: hash,
+            auth_type: 'form'
+        }).save();
 
-                        new UserModel({
-                            email: data.email.toLowerCase(),
-                            first_name: data.first_name.toLowerCase(),
-                            last_name: data.last_name.toLowerCase(),
-                            password: hash,
-                            auth_type: 'form'
-                        }).save((err, newDoc) => {
-                            if (err) return reject(err);
-
-                            return resolve(newDoc._id);
-                        });
-                    });
-                });
-
-            }).catch(err => reject(err));
-    });
+    } catch (err) {
+        return err;
+    }
 }
 
 async function signInWithForm(data) {
-    return new Promise((resolve, reject) => {
-        UserModel.findOne({ email: data.email }, (err, user) => {
-            if (err) return reject(err);
-            if (!user) return reject('no user');
+    console.log(data);
 
-            bcrypt.compare(data.password, user.password)
-                .then(result => {
-                    if (!result) return reject(false);
+    try {
+        const user = await UserModel.findOne({ email: data.email });
 
-                    return resolve(user);
-                });
-        });
-    });
+        if (!user) throw 'user not found';
+
+        const OK = bcrypt.compareSync(data.password, user.password)
+
+        if (!OK) throw 'not good';
+
+        return user;
+
+    } catch (err) {
+        return err;
+    }
 }
 
 /* google auth */
 async function signUpWithGoogle(data) {
-    return new Promise((resolve, reject) => {
-        return _duplication(data.email) // check for duplication, some nasty errors might occur if the same email is used twice
-            .then((ok) => {
-                new UserModel({
-                    email: data.email.toLowerCase(),
-                    first_name: data.first_name.toLowerCase(),
-                    last_name: data.last_name.toLowerCase(),
-                    password: null,
-                    auth_type: 'google'
-                }).save((err, newDoc) => {
-                    if (err) return reject(err);
+    try {
+        await _duplication(data.email); // check for duplication, some nasty errors might occur if the same email is used twice
 
-                    return resolve(newDoc._id);
-                });
+        return await new UserModel({
+            email: data.email.toLowerCase(),
+            first_name: data.first_name.toLowerCase(),
+            last_name: data.last_name.toLowerCase(),
+            password: null,
+            auth_type: 'google'
+        }).save();
 
-            }).catch(err => reject(err));
-    });
+    } catch (err) {
+        return err;
+    }
 }
 
 async function signInWithGoogle(data) {
-    return new Promise((resolve, reject) => {
-        UserModel.findOne({ email: data.toLowerCase() }, (err, user) => {
-            if (err) return reject(err);
-            if (!user) return reject('no user');
-
-            return resolve(user);
-        });
-    });
+    try {
+        return await UserModel.findOne({ email: data.toLowerCase() });
+    } catch (err) {
+        return err;
+    }
 }
 
 async function _duplication(email) {
     // make a query and check if a user with the email in the body exists
     // prevent duplicate emails
-
-    return new Promise((resolve, reject) => {
-        UserModel.findOne({ email: email.toLowerCase() }, (err, user) => {
-            if (err) return reject(err);
-            if (user) return reject('user already exists');
-            if (!user) return resolve(true);
-        });
-    });
+    try {
+        return await UserModel.findOne({ email: email.toLowerCase() });
+    } catch (err) {
+        return err;
+    }
 }
 
 async function findOneWithId(id) { // find a user with _id 
-    return new Promise((resolve, reject) => {
-        UserModel.findOne({ _id: id }, (err, user) => {
-            if (err) return reject(err);
-            if (!user) return reject('no user');
-
-            return resolve(user);
-        });
-    });
+    try {
+        return UserModel.findOne({ _id: id });
+    } catch (err) {
+        return err;
+    }
 }
 
 export default {

@@ -1,2 +1,2 @@
-.container h1{font-size:4rem;font-weight:700;margin:2rem 0;text-transform:capitalize}.container h1 span{font-size:1rem;opacity:.7}@media only screen and (max-width: 999px){.container h1{font-size:3rem;display:flex;justify-content:space-between;align-items:center}}
+.container h1{font-size:4rem;font-weight:700;margin:2rem 0;text-transform:capitalize;display:flex;justify-content:space-between;align-items:center}.container h1 .badge{font-size:1.2rem}@media only screen and (max-width: 999px){.container h1{font-size:3rem}}
 /*# sourceMappingURL=page.min.css.map */

@@ -1,20 +1,11 @@
 import userMethods from '../../models/user.model';
 
 function template(req, res) {
-    userMethods.findOneWithId(req.session.uid)
-        .then(user => {
-            res.render('pages/account', {
-                title: 'Account',
-                config: req.headers.config,
-                signedIn: req.session.uid != undefined ? true : false,
-                user: {
-                    email: user.email,
-                    first_name: user.first_name,
-                    last_name: user.last_name
-                }
-            });
-
-        }).catch(err => res.redirect('/'));
+    res.render('pages/account', {
+        title: 'Account',
+        user: req.session.user,
+        config: req.headers.config,
+    });
 }
 
 function action(req, res) {

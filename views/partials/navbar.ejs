@@ -1,10 +1,10 @@
-<header>
+<div class="mobile-nav">
   <div class="open-sidenav">
     <span></span>
     <span></span>
     <span></span>
   </div>  
-</header>
+</div>
 
 <nav>
   <div class="container">
@@ -17,14 +17,16 @@
       <a href="/products?q=on_sale&page=1">On Sale</a>
     </div>
     <div>
-      <% if(!signedIn) { %>
-      <a href="/sign-in">Sign In</a>
-      <a href="/sign-up" id="sign-up-link">Sign Up</a>
+      
+
+      <% if(typeof user == 'object' && user) { %>
+        <a href="/users/account">Account</a>
+        <a href="/users/sign-out">Sign Out</a>
+      <% } else { %>
+        <a href="/sign-in">Sign In</a>
+        <a href="/sign-up" id="sign-up-link">Sign Up</a>
       <% } %>
-      <% if(signedIn) { %>
-      <a href="/users/account">Account</a>
-      <a href="/users/sign-out">Sign Out</a>
-      <% } %>
+    
     </div>
   </div>
 </nav>

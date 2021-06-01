@@ -7,13 +7,11 @@ const ImgModel = mongoose.model('Image', new Schema({
 }));
 
 async function saveImage(data) {
-    return new Promise((resolve, reject) => {
-        new ImgModel(data)
-            .save((err, newImg) => {
-                if (err) return reject(err);
-                return resolve(newImg._id);
-            });
-    });
+    try {
+        return await new ImgModel(data).save();
+    } catch (err) {
+        return err;
+    }
 }
 
 export default { saveImage };

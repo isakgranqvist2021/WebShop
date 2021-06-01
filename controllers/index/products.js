@@ -23,9 +23,9 @@ async function template(req, res) {
         title: 'Products',
         q: req.query.q,
         p: req.query.page,
+        user: req.session.user,
         result: result,
-        config: req.headers.config,
-        signedIn: req.session.uid != undefined ? true : false
+        config: req.headers.config
     });
 }
 

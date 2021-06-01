@@ -10,8 +10,6 @@ async function scrapeImages(keywords) {
     &source=lnms&tbm=isch&sa=X&ved=2ahUKEwibyfed8urwAhUipIsKHXJIB1IQ_AUoAXoECAEQAw&biw=1920
     &bih=1089`;
 
-    //console.log(url.trim().replace(/\s/g, ''))
-
     return fetch(url.trim().replace(/\s/g, ''), {
         method: 'GET'
     }).then(response => response.text())

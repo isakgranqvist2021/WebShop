@@ -5,47 +5,75 @@ import validators from '../../utils/validators';
 function template(req, res) {
     res.render('pages/sign-in', {
         title: 'Sign In',
-        config: req.headers.config,
-        signedIn: req.session.uid != undefined ? true : false
+        user: req.session.user,
+        config: req.headers.config
     });
 }
 
-function action(req, res) {
+async function action(req, res) {
     switch (req.params.authType) {
-        case 'form-auth': return _signInWithForm(req, res);
-        case 'google-auth': return _signInWithGoogle(req, res);
+        case 'form-auth':
+            try {
+                const result = await _signInWithForm(req.body);
+
+                if (typeof (result) === 'string') throw result;
+
+                req.session.uid = result._id;
+                return res.redirect('/users/account' + '?success=you have been signed in');
+
+            } catch (err) {
+                return res.redirect('/sign-in' + '?err=' + err)
+            }
+
+        case 'google-auth':
+            try {
+                const result = await _signInWithGoogle(req.body.email);
+                req.session.uid = result.uid;
+
+                delete result.uid;
+                return res.json(result);
+            } catch (err) {
+                return res.json(err);
+            }
+
         default: return res.status(403).redirect('/sign-in?err=auth type does not exist');
     }
 }
 
-function _signInWithForm(req, res) {
-    if (!req.body.email) return res.redirect('/sign-in?err=missing email');
-    if (!req.body.password) return res.redirect('/sign-in?err=missing password');
-    if (!validators.emailValidator(req.body.email)) return res.redirect('/sign-in?err=email not approved');
+async function _signInWithForm(data) {
+    if (!data.email) throw Error('missing email');;
+    if (!data.password) throw Error('missing password');
+    if (!validators.emailValidator(data.email)) throw Error('email not approved');
 
-    userMethods.signInWithForm(req.body)
-        .then(result => {
-
-
-            req.session.uid = result._id;
-            return res.redirect('/users/account?success=welcome ' + result.first_name);
-        }).catch(err => res.redirect('/sign-in?err=invalid email or password'));
+    return await userMethods.signInWithForm(data);
 }
 
 
-function _signInWithGoogle(req, res) {
-    if (!req.body.email) return res.json({ message: 'missing email', success: false, data: null });
+async function _signInWithGoogle(email) {
+    if (!email) return {
+        message: 'missing email',
+        success: false,
+        data: null
+    };
 
-    userMethods.signInWithGoogle(req.body.email)
-        .then(result => {
-            req.session.regenerate((err) => {
-                if (err) return res.json({ message: 'internal server error', success: false, data: null });
+    try {
+        const user = await userMethods.signInWithGoogle(email);
 
-                req.session.uid = result._id;
-                return res.json({ message: 'welcome ' + result.first_name, success: true, data: { redirect: '/users/account' } });
-            });
-
-        }).catch(err => res.redirect('/sign-in?err=invalid email or password'));
+        return {
+            uid: user._id,
+            message: 'welcome ' + user.first_name,
+            success: true,
+            data: { redirect: '/users/account' }
+        }
+    } catch (err) {
+        return {
+            message: 'you probably have an account already',
+            success: false,
+            data: null
+        }
+    }
 }
+
+
 
 export default { template, action };

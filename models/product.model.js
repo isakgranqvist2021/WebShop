@@ -22,17 +22,15 @@ async function saveProduct(data) {
     data["product_collection"] = data["product_collection"].toLowerCase();
     data["title"] = data["title"].toLowerCase();
 
-    return new Promise((resolve, reject) => {
-        new ProductModel(data)
-            .save((err, newProduct) => {
-                if (err) return reject(err);
-                return resolve(newProduct);
-            });
-    });
+    try {
+        return await new ProductModel(data).save();
+    } catch (err) {
+        return err;
+    }
 }
 
 async function findProducts(filter) {
-    return new Promise((resolve, reject) => {
+    try {
         let query = new Object();
         let options = {
             page: filter.page,
@@ -53,33 +51,31 @@ async function findProducts(filter) {
         if (filter.product_collection === 'on_sale')
             query = { on_sale: true };
 
-        ProductModel.paginate(query, options, (err, result) => {
-            if (err) return reject(err);
-            if (!result.docs) reject('zero docs');
-            resolve(result);
-        });
-    });
+        return await ProductModel.paginate(query, options);
+    } catch (err) {
+        return err
+    }
 }
 
 async function findProduct(filter) {
-    return new Promise((resolve, reject) => {
-        ProductModel.findById(filter).populate({
+    try {
+        return await ProductModel.findById(filter).populate({
             path: 'variants',
             model: 'Variant',
             populate: {
                 path: 'img',
                 model: 'Image'
             }
-        }).lean().exec((err, product) => {
-            if (err) return reject(err);
-            return resolve(product);
-        });
-    });
+        }).lean().exec();
+
+    } catch (err) {
+        return err;
+    }
 }
 
 async function findWithLimit(config) {
-    return new Promise((resolve, reject) => {
-        ProductModel.find({
+    try {
+        return await ProductModel.find({
             product_collection: config.product_collection,
             _id: { $ne: config.exclude }
         }).limit(config.limit).populate({
@@ -89,12 +85,11 @@ async function findWithLimit(config) {
                 path: 'img',
                 model: 'Image'
             }
-        }).exec((err, products) => {
-            if (err) return reject(err);
-            if (!products) return reject('zero products');
-            return resolve(products);
-        })
-    })
+        }).exec();
+
+    } catch (err) {
+        return err;
+    }
 }
 
 export default {

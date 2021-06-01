@@ -7,14 +7,16 @@ async function template(req, res) {
         limit: 8,
         exclude: req.params.product_id
     });
-    console.log(simillar_products);
+
+    console.log(req.session.user);
+
     res.render('pages/product', {
         title: 'Product',
+        user: req.session.user,
         product: product,
         simillar_products: simillar_products,
         config: req.headers.config,
-        referer: req.session.referer,
-        signedIn: req.session.uid != undefined ? true : false
+        referer: req.session.referer
     })
 }
 
