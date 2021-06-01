@@ -22,6 +22,7 @@ async function template(req, res) {
     return res.render('pages/products', {
         title: 'Products',
         q: req.query.q,
+        p: req.query.page,
         result: result,
         config: req.headers.config,
         signedIn: req.session.uid != undefined ? true : false

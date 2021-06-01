@@ -1,10 +1,11 @@
 @import 'colors';
 
 .hero-section {
-    min-height: 100vh;
+    min-height: calc(100vh - 5rem);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 
     .container {
         display: flex;
@@ -20,6 +21,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            animation: fadeInFromLeft 1s 1s cubic-bezier(0.075, 0.82, 0.165, 1) 1 normal forwards;
+            opacity: 0;
+            overflow: hidden;
 
             h1,
             p {
@@ -55,6 +59,9 @@
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
+            opacity: 0;
+            animation: fadeInFromRight 1s cubic-bezier(0.075, 0.82, 0.165, 1) 1 normal forwards;
+            box-shadow: 0 0 8px 35px white inset;
         }
     }
 }
@@ -84,5 +91,29 @@
                 display: none;
             }
         }
+    }
+}
+
+@keyframes fadeInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateY(200%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(200%) scale(0) rotate(360deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotate(0);
     }
 }

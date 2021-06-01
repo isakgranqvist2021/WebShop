@@ -3,14 +3,8 @@ import saveForm from './Components/SaveForm';
 import listenForClicks from './Components/OpenSidenav';
 import selectImage from './Components/SelectImage';
 
-// import toggleClass from './Components/ToggleClass';
 
-// gets executed when the document has loaded
-window.onload = function () {
-    clearQuery(); // clear any queries in the address bar
-    listenForClicks();
-    selectImage();
-
+function initSplide() {
     if (document.querySelector('.splide') != null) {
         new Splide('.splide', {
             type: 'loop',
@@ -28,10 +22,15 @@ window.onload = function () {
             }
         }).mount();
     }
+}
 
-    switch (window.location.pathname) {
-        case '/sign-up': return saveForm();
+// gets executed when the document has loaded
+window.onload = () => {
+    clearQuery(); // clear any queries in the address bar
+    listenForClicks();
+    selectImage();
+    initSplide();
 
-        default: return;
-    }
+    if (window.location.pathname == '/sign-up')
+        saveForm();
 }

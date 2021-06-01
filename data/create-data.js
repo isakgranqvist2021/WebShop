@@ -27,7 +27,6 @@ async function newVariant(product_collection, color) {
 }
 
 async function addProduct(product, save) {
-    // let product_collection = collections[Math.floor(Math.random() * collections.length)];
     if (save) {
         fetch('http://localhost:3000/add-product', {
             method: 'POST',
