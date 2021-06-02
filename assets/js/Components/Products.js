@@ -14,7 +14,7 @@ class Products {
             const result = await HTTP.GET(`/api/products?q=${q}&page=${p}`);
             return Promise.resolve(result);
         } catch (err) {
-            Promise.reject(err);
+            return Promise.reject(err);
         }
     }
 
@@ -46,6 +46,7 @@ class Products {
             prevPage: this.data.result.prevPage,
             nextPage: this.data.result.nextPage
         });
+
         this.controls.addEventListeners();
     }
 

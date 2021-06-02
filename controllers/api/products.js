@@ -2,8 +2,6 @@ import getCollections from '../../config/page/collections';
 import productMethods from '../../models/product.model';
 
 async function get(req, res) {
-    console.log('request');
-
     if (!req.query.q || !getCollections().collections.map(c => c.label).includes(req.query.q)) {
 
         /*

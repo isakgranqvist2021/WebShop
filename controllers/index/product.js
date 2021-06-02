@@ -8,8 +8,6 @@ async function template(req, res) {
         exclude: req.params.product_id
     });
 
-    console.log(req.session.user);
-
     res.render('pages/product', {
         title: 'Product',
         user: req.session.user,

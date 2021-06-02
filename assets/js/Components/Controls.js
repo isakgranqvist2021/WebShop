@@ -5,14 +5,12 @@ class Controls extends Products {
         super();
     }
 
-    navigate() {
-        console.log('hello, world');
-    }
-
     addEventListeners() {
         document.querySelectorAll('.clickable').forEach(btn => {
             btn.addEventListener('click', async (e) => {
-                let result = await this.refresh('all', btn.getAttribute('data-page'));
+                let product_collection = new URLSearchParams(window.location.search).get('q');
+                let result = await this.refresh(product_collection, btn.getAttribute('data-page'));
+
                 this.cC.innerHTML = this.template(result);
                 this.addEventListeners();
             });
