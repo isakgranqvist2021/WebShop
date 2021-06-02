@@ -1,9 +1,12 @@
 import HTTP from '../Utils/HTTP';
+import Product from './Product';
 
 class Products {
-    constructor() {
-        this.pC = document.querySelector('.products');
+    constructor(controls) {
+        this.pC = document.querySelector('#app-products');
+        this.cC = document.querySelector('#app-controls');
         this.data = null;
+        this.controls = controls;
     }
 
     async loadProducts(q, p) {
@@ -15,60 +18,41 @@ class Products {
         }
     }
 
-    async init() {
-        let s = new URLSearchParams(window.location.search);
-        let args = [s.get('q') || 'all', s.get('page') || 1];
+    async refresh(q, p) {
+        this.data = await this.loadProducts(q, p);
+        this.render(this.data.result.docs);
 
-        this.data = await this.loadProducts(...args);
+        let url = new URL(window.location);
+        url.searchParams.set('page', p);
+        window.history.pushState({}, '', url);
 
-        this.render(this.data.result.docs.map(product => {
-            return this.assemble(product);
-        }));
+        return await Promise.resolve({
+            hasPrevPage: this.data.result.hasPrevPage,
+            hasNextPage: this.data.result.hasNextPage,
+            page: this.data.result.page,
+            prevPage: this.data.result.prevPage,
+            nextPage: this.data.result.nextPage
+        });
     }
 
-    assemble(product) {
-        let a = document.createElement('a');
-        let price = document.createElement('span');
-        let pI = document.createElement('div');
-        let img = document.createElement('img');
-        let body = document.createElement('div');
-        let pT = document.createElement('p');
+    async init(q, p) {
+        this.data = await this.loadProducts(q, p);
+        this.render(this.data.result.docs);
 
-        price.className = 'product-price';
-        price.textContent = `€${product.price}`;
-        pI.className = 'product-img';
-        img.src = product.variants[0].img.src
-        body.className = 'product-body';
-        pT.className = 'product-title';
-        pT.textContent = product.title;
-
-        a.appendChild(price);
-        pI.appendChild(img);
-        a.appendChild(pI);
-        body.appendChild(pT);
-        a.appendChild(pT);
-
-        return a;
+        this.cC.innerHTML = this.controls.template({
+            hasPrevPage: this.data.result.hasPrevPage,
+            hasNextPage: this.data.result.hasNextPage,
+            page: this.data.result.page,
+            prevPage: this.data.result.prevPage,
+            nextPage: this.data.result.nextPage
+        });
+        this.controls.addEventListeners();
     }
 
     render(products) {
-        products.forEach(product => {
-            this.pC.appendChild(product);
-        });
+        this.pC.innerHTML = products.map(product =>
+            new Product(product).template()).join('');
     }
 }
 
 export default Products;
-
-/*
-<a href="/product/<%= product._id %>">
-    <span class="product-price">€<%= product.price %></span>
-
-    <div class="product-img">
-        <img src="<%= product.variants[0].img.src %>" alt="<%= product.variants[0].img.alt %>" class="p-focused" id="<%= product._id %>" loading="lazy">
-    </div>
-    <div class="product-body">
-        <p class="product-title"><%= product.title %></p>
-    </div>
-</a>
-*/

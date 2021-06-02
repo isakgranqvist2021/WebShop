@@ -34,10 +34,19 @@ async function findProducts(filter) {
         let query = new Object();
         let options = {
             page: filter.page,
-            limit: 25,
+            limit: 5,
+            select: {
+                variants: 1,
+                _id: 1,
+                price: 1,
+                title: 1
+            },
             populate: {
                 path: 'variants',
                 model: 'Variant',
+                options: {
+                    limit: 1
+                },
                 populate: {
                     path: 'img',
                     model: 'Image'
@@ -52,6 +61,7 @@ async function findProducts(filter) {
             query = { on_sale: true };
 
         return await ProductModel.paginate(query, options);
+
     } catch (err) {
         return Promise.reject(err);
     }
