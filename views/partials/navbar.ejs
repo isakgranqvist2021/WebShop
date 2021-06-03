@@ -3,7 +3,7 @@
     <span></span>
     <span></span>
     <span></span>
-  </div>  
+  </div>
 </div>
 
 <nav>
@@ -11,22 +11,24 @@
     <div>
       <a href="/" class="logo-container"><%- config.logo %></a>
     </div>
-    <div>
-      <a href="/collections">Collections</a>
-      <a href="/products?q=all&page=1">Products</a>
-      <a href="/products?q=on_sale&page=1">On Sale</a>
-    </div>
-    <div>
-      
 
+    <div class="links-group">
+      <a href="/collections"><i class="fas fa-tags"></i>Collections</a>
+      <a href="/products?q=all&page=1"><i class="fas fa-tshirt"></i>Products</a>
+      <a href="/products?q=on_sale&page=1"><i class="fas fa-percentage"></i>On Sale</a>
+    </div>
+
+    <div class="links-group">
       <% if(typeof user == 'object' && user) { %>
-        <a href="/users/account">Account</a>
-        <a href="/users/sign-out">Sign Out</a>
-      <% } else { %>
-        <a href="/sign-in">Sign In</a>
-        <a href="/sign-up" id="sign-up-link">Sign Up</a>
+      <% if(user.admin) { %>
+      <a href="/users/add-product"><i class="fas fa-plus"></i>Add Product</a>
       <% } %>
-    
+      <a href="/users/account"><i class="fas fa-user"></i>Account</a>
+      <a href="/users/sign-out"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
+      <% } else { %>
+      <a href="/sign-in"><i class="fas fa-sign-in-alt"></i>Sign In</a>
+      <a href="/sign-up" id="sign-up-link"><i class="fas fa-user-plus"></i>Sign Up</a>
+      <% } %>
     </div>
   </div>
 </nav>

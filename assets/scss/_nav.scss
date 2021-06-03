@@ -15,7 +15,7 @@ nav {
     z-index: 4;
     font-family: inherit;
     height: 5rem;
-    background-color: $light;
+    background-color: $primary;
     border-bottom: 1px solid rgba($primary, .2);
 
     .container {
@@ -29,8 +29,8 @@ nav {
             height: inherit;
 
             #sign-up-link {
-                background-color: $primary;
-                color: $light;
+                background-color: $light;
+                color: $primary;
                 padding: .5rem 1rem;
                 border-radius: .25rem;
             }
@@ -45,17 +45,57 @@ nav {
                     max-height: 50%;
                     max-width: 100%;
                     object-fit: contain;
-                    fill: $primary;
+                    fill: $light;
                 }
             }
 
             a {
-                color: $primary;
+                color: $light;
                 text-decoration: none;
                 text-transform: capitalize;
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                &::before,
+                &::after {
+                    position: absolute;
+                    height: 1px;
+                    border-radius: 4px;
+                    background-color: $light;
+                    top: 100%;
+                    margin-top: 4px;
+                    content: '';
+                    transition: all 200ms linear;
+                    opacity: 0;
+                }
+
+                &::before {
+                    width: 0;
+                    left: 50%;
+                }
+
+                &::after {
+                    width: 0;
+                    right: 50%;
+                }
+
+                &:hover {
+
+                    &::before,
+                    &::after {
+                        width: 50%;
+                        opacity: 1;
+                    }
+                }
+
+                i {
+                    display: inline-block;
+                    margin-right: .51rem;
+                }
 
                 &:not(:last-of-type) {
-                    margin-right: 1rem;
+                    margin-right: 1.4rem;
                 }
             }
         }
@@ -123,6 +163,11 @@ nav {
             width: 320px;
         }
 
+        .links-group {
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            padding: 1rem 0;
+        }
+
         .container {
             flex-direction: column;
             justify-content: flex-start;
@@ -143,7 +188,11 @@ nav {
 
                 a {
                     color: $light;
-                    margin: .7rem 0;
+                    margin: 1rem 0;
+
+                    i {
+                        margin-right: .33rem;
+                    }
 
                     &:not(:last-of-type) {
                         margin-right: 0;

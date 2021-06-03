@@ -17,9 +17,6 @@ class Form {
     }
 
     init() {
-        if (window.location.pathname != '/sign-in')
-            return sessionStorage.removeItem('formData');
-
         // save form data that isn't sensetive to reduce the annoyment factor
         // it's super annoying especially on mobile when you click submit and you have to re-enter all the data
 

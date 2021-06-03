@@ -32,10 +32,13 @@ function getCollections() {
             {
                 label: 'on_sale',
                 thumbnail: { src: '', alt: '' }
+            },
+            {
+                label: 'bags',
+                thumbnail: { src: '', alt: '' }
             }
         ]
     }
 }
-
 
 export default getCollections;

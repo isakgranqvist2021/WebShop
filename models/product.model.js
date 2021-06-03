@@ -34,7 +34,7 @@ async function findProducts(filter) {
         let query = new Object();
         let options = {
             page: filter.page,
-            limit: 5,
+            limit: 20,
             select: {
                 variants: 1,
                 _id: 1,

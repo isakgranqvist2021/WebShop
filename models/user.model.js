@@ -12,7 +12,8 @@ const UserModel = mongoose.model('User', new Schema({
     state: { type: String, required: false, default: '' },
     zip: { type: String, required: false, default: '' },
     auth_type: { type: String, required: true, unique: false },
-    password: { type: String, required: false, unique: false }
+    password: { type: String, required: false, unique: false },
+    admin: { type: Boolean, default: false }
 }));
 
 /* form auth */

@@ -51,7 +51,8 @@ app.use(session({
 
 /* file parsing setup */
 app.use(express.json({
-    extended: true // should the server be allowed to parse nested objects
+    extended: true, // should the server be allowed to parse nested objects
+    limit: '50mb'
 })); // allow server to parse json data
 
 app.use(express.urlencoded({

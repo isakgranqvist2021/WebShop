@@ -21,7 +21,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            animation: fadeInFromLeft 1s 1s cubic-bezier(0.075, 0.82, 0.165, 1) 1 normal forwards;
+            animation: fadeInFromLeft 1s cubic-bezier(0.075, 0.82, 0.165, 1) 1 normal forwards;
             opacity: 0;
             overflow: hidden;
 
@@ -57,11 +57,9 @@
         .image {
             background-image: url('/public/img/pexels-katie-e-3671083.jpg');
             background-size: cover;
-            background-position: center center;
             background-repeat: no-repeat;
             opacity: 0;
-            animation: fadeInFromRight 1s cubic-bezier(0.075, 0.82, 0.165, 1) 1 normal forwards;
-            box-shadow: 0 0 8px 35px white inset;
+            animation: fadeInFromRight 3s ease 1 normal forwards;
         }
     }
 }
@@ -108,12 +106,12 @@
 
 @keyframes fadeInFromRight {
     from {
+        background-position: -200% 20%;
         opacity: 0;
-        transform: translateX(200%) scale(0) rotate(360deg);
     }
 
     to {
+        background-position: 100% 100%;
         opacity: 1;
-        transform: translateX(0) scale(1) rotate(0);
     }
 }

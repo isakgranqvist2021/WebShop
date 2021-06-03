@@ -24,29 +24,18 @@ class Products {
 
         let url = new URL(window.location);
         url.searchParams.set('page', p);
+        url.searchParams.set('q', q);
+
         window.history.pushState({}, '', url);
 
-        return await Promise.resolve({
-            hasPrevPage: this.data.result.hasPrevPage,
-            hasNextPage: this.data.result.hasNextPage,
-            page: this.data.result.page,
-            prevPage: this.data.result.prevPage,
-            nextPage: this.data.result.nextPage
-        });
+        return await Promise.resolve(this.data);
     }
 
     async init(q, p) {
         this.data = await this.loadProducts(q, p);
         this.render(this.data.result.docs);
 
-        this.cC.innerHTML = this.controls.template({
-            hasPrevPage: this.data.result.hasPrevPage,
-            hasNextPage: this.data.result.hasNextPage,
-            page: this.data.result.page,
-            prevPage: this.data.result.prevPage,
-            nextPage: this.data.result.nextPage
-        });
-
+        this.cC.innerHTML = this.controls.template(this.data);
         this.controls.addEventListeners();
     }
 

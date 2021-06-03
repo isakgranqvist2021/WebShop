@@ -11,12 +11,16 @@ const router = express.Router();
 /* import all the controllers */
 import accountController from '../controllers/users/account';
 import signOutController from '../controllers/users/sign-out';
+import addProductController from '../controllers/users/add-product';
 
 /* register all the routes and attach a controller */
 router.get('/account', accountController.template);
 router.post('/account', accountController.action);
 router.get('/sign-out', signOutController.action);
 router.post('/delete-account', accountController.action_delete_account);
+
+router.get('/add-product', addProductController.template);
+router.post('/add-product', addProductController.action);
 
 /* export router variable to main.js */
 export default router;

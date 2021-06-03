@@ -11,7 +11,12 @@ window.onload = () => {
     new Clear().init();
     new Sidenav().init();
 
-    if (window.location.pathname === '/sign-in') {
+    if (window.location.pathname != '/sign-up') {
+        sessionStorage.removeItem('formData');
+    }
+
+    if (window.location.pathname === '/sign-up') {
+        console.log('init form saving')
         new Form().init();
 
     } else if (new RegExp(/(\/product\/[a-zA-Z0-9].*)/).test(window.location.pathname)) {

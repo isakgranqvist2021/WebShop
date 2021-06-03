@@ -2,7 +2,9 @@ import getCollections from '../../config/page/collections';
 import productMethods from '../../models/product.model';
 
 async function get(req, res) {
-    if (!req.query.q || !getCollections().collections.map(c => c.label).includes(req.query.q)) {
+    let collections = getCollections().collections.map(c => c.label);
+
+    if (!req.query.q || !collections.includes(req.query.q)) {
 
         /*
             check if the q parameter is allowed and exists in the collections array
@@ -21,6 +23,7 @@ async function get(req, res) {
 
     return res.json({
         q: req.query.q,
+        collections: collections,
         result: result
     });
 }
