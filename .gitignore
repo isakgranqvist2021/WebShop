@@ -1,5 +1,16 @@
-/node_modules
-/assets/js/node_modules
+# server
+/application/node_modules
+/application/package-lock.json
+
+# client 
+/application/assets/js/node_modules
+/application/assets/js/package-lock.json
+
+# data
+/data/node_modules
+/data/package-lock.json
+
+# miscellaneous
+/application/.env
 /.vscode
-/package-lock.json
-/.env
+/application/uploads

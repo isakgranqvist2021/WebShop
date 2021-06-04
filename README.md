@@ -11,12 +11,12 @@ npm start
 ```
 
 ## run mocha
-
 ```bash
 npm run test:mocha
 ```
 
-## .env - mongodb atlast
+## .env - mongodb atlas
+[MongoDB Cloud](https://cloud.mongodb.com/)
 ```js
 PORT = ?
 DB_USER = ?
@@ -24,9 +24,16 @@ DB_PW = ?
 DB = ?
 ```
 
-## populate database with random products
+## create uploads directory in -> application/uploads
+```bash
+mkdir application/uploads
+```
+
+## npm start 150 -> 150 products
+## npm start -> 100 products
+## npm start 10000 -> 10000 products
 ```js
-npm run add:products
+npm start <products: uint>
 ```
 
 ![Nodejs Logo](https://www.schemecolor.com/wallpaper?i=23516&desktop)

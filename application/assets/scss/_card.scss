@@ -1,0 +1,15 @@
+@import 'colors';
+
+@mixin card() {
+    width: 100%;
+    height: 20rem;
+    background-color: $primary;
+    color: $light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2rem;
+}

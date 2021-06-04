@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,YAAY,AAAC,CACT,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,oCAAoC,CAC3D,GAAG,CAAE,IAAI,CAKZ,AARD,AAKI,YALQ,CAKR,KAAK,AAAC,CCJN,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,KAAK,CACb,gBAAgB,CCLX,OAAO,CDMZ,KAAK,CCHD,IAAO,CDIX,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,cAAc,CAAE,UAAU,CAC1B,WAAW,CAAE,GAAG,CAChB,eAAe,CAAE,IAAI,CACrB,SAAS,CAAE,IAAI,CDJd",
+    "sources": [
+        "../../assets/scss/collections.scss",
+        "../../assets/scss/_card.scss",
+        "../../assets/scss/_colors.scss"
+    ],
+    "names": [],
+    "file": "collections.min.css"
+}

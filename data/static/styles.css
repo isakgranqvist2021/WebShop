@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    width: 100%;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    height: 4rem;
+    width: 100%;
+    background-color: #333;
+    padding: 5px;
+}
+
+#result {
+    padding-top: 4rem;
+}
+
+#result .product {
+    width: 100%;
+    border: 15px solid rgb(94, 94, 94);
+    border-bottom: none;
+    padding: 1.5rem;
+}
+
+#result img {
+    width: 150px;
+    height: 150px;
+}
+
+#result .product input,
+#result .product .description {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#result .product .description {
+    min-height: 280px;
+}
+
+#result .product label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#result .product button {
+    padding: .6rem;
+}
+
+#result .product .images {
+    margin: 1rem 0;
+}
