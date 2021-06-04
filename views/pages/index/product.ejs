@@ -4,11 +4,11 @@
             <div class="col-md-6">
                 <a href="<%= referer %>" class="btn btn-secondary go-back" title="Go back"><i class="fas fa-chevron-left"></i></a>
 
-                <img id="selected-img" src="<%= product.variants[0].img.src %>" style="max-width: 100%"/>
+                <img id="selected-img" src="/uploads/<%= product.variants[0].img.src %>" style="max-width: 100%"/>
 
                 <div class="image-picker">
                     <% product.variants.forEach(variant => { %>
-                        <img src="<%= variant.img.src %>" style="max-width: 100%"/>
+                        <img src="/uploads/<%= variant.img.src %>" style="max-width: 100%"/>
                     <% }) %>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                             <% simillar_products.forEach(product => { %>
                                 <li class="splide__slide">
                                     <a href="/product/<%= product._id %>">
-                                        <img src="<%= product.variants[0].img.src %>" alt="<%= product.variants[0].img.alt %>">
+                                        <img src="/uploads/<%= product.variants[0].img.src %>" alt="<%= product.variants[0].img.alt %>">
                                     </a>
                                 </li>
                             <% }) %>

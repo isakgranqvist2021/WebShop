@@ -1,0 +1,69 @@
+<% 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+data.collections.splice(data.collections.findIndex(c => c === 'on_sale'), 1);
+data.collections.splice(data.collections.findIndex(c => c === 'all'), 1);
+%>
+<div class="container pt-5">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="product_information" data-bs-toggle="tab" data-bs-target="#pi" type="button"
+                role="tab" aria-controls="home" aria-selected="true">Product Information</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="product_variant" data-bs-toggle="tab" data-bs-target="#pv" type="button" role="tab"
+                aria-controls="profile" aria-selected="false">Product Variants</button>
+        </li>
+    </ul>
+
+    <form class="pt-5 pb-5" method="POST" action="/admin/add-product" enctype="multipart/form-data">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="pi" role="tabpanel">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price €</label>
+                    <input type="number" class="form-control" id="price" name="price" value="10" min="1">
+                </div>
+                <div class="mb-3">
+                    <label for="product_collection" class="form-label">Product Collection</label>
+                    <select class="form-select" name="product_collection" id="product_collection">
+                        <% data.collections.forEach(collection => { %>
+                        <option value="<%= collection %>"><%= collection.replace('_', ' ').capitalize() %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <input class="form-check-input me-2" type="checkbox" id="on_sale" name="on_sale">
+                    <label class="form-check-label" for="on_sale">On Sale</label>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea type="text" class="form-control" id="description" name="description"></textarea>
+                </div>
+                <div class="mb-3" id="product-variants"></div>
+                
+                <button class="btn btn-primary" type="button">Save Product</button>
+
+                <a href="" class="pt-5 d-block" id="view-product"></a>
+
+            </div>
+
+            <div class="tab-pane fade" id="pv" role="tabpanel">
+                <div class="mb-3">
+                    <label for="variant-color">Variant Color</label>
+                    <input type="text" class="form-control" id="variant-color">
+                </div>
+                <div class="mb-3">
+                    <label for="images" class="form-label">Images</label>
+                    <input type="file" class="form-control" id="images" name="images">
+                </div>
+                <button class="btn btn-secondary" type="button">Add Variant</button>
+            </div>
+        </div>
+    </form>
+</div>

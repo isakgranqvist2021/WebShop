@@ -17,4 +17,12 @@ async function populateUser(req, res, next) {
     }
 }
 
-export default { setupConfig, populateUser };
+function isAdmin(req, res, next) {
+    if (!req.session.user.admin) {
+        return res.redirect('/');
+    }
+
+    return next();
+}
+
+export default { setupConfig, populateUser, isAdmin };

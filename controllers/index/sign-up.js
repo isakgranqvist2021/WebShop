@@ -2,7 +2,7 @@ import userMethods from '../../models/user.model';
 import validators from '../../utils/validators';
 
 function template(req, res) {
-    res.render('pages/sign-up', {
+    res.render('pages/index/sign-up', {
         title: 'Sign Up',
         user: req.session.user,
         config: req.headers.config

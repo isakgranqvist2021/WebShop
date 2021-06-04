@@ -3,7 +3,7 @@ import validators from '../../utils/validators';
 import data from '../../utils/data';
 
 function template(req, res) {
-    res.render('pages/account', {
+    res.render('pages/users/account', {
         title: 'Account',
         user: req.session.user,
         data: {

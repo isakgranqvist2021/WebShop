@@ -3,7 +3,7 @@ import validators from '../../utils/validators';
 
 
 function template(req, res) {
-    res.render('pages/sign-in', {
+    res.render('pages/index/sign-in', {
         title: 'Sign In',
         user: req.session.user,
         config: req.headers.config

@@ -22,6 +22,10 @@ function getCollections() {
                 thumbnail: { src: '', alt: '' }
             },
             {
+                label: 'shoes',
+                thumbnail: { src: '', alt: '' }
+            },
+            {
                 label: 'hats',
                 thumbnail: { src: '', alt: '' }
             },

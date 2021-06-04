@@ -1,5 +1,6 @@
 import getCollections from '../../config/page/collections';
 import productMethods from '../../models/product.model';
+import fs from 'fs';
 
 async function get(req, res) {
     let collections = getCollections().collections.map(c => c.label);

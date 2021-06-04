@@ -5,6 +5,8 @@ import Select from './Components/Select';
 import Sidenav from './Components/Sidenav';
 import Slider from './Components/Slider';
 import Controls from './Components/Controls';
+import Create from './Components/Create';
+import Variants from './Components/Variants';
 
 // gets executed when the document has loaded
 window.onload = () => {
@@ -30,5 +32,8 @@ window.onload = () => {
             s.get('q') || 'all',
             s.get('page') || 1
         );
+    } else if (window.location.pathname === '/admin/add-product') {
+        new Variants().init();
+        new Create().init();
     }
 }

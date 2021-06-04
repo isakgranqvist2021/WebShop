@@ -27,11 +27,12 @@ async function template(req, res) {
         totalCost = calculateTotal(cart.map(product => ({ price: product.price, qty: product.qty })))
     }
 
-    return res.render('pages/cart', {
+    return res.render('pages/index/cart', {
         title: 'Cart',
         config: req.headers.config,
         totalCost: totalCost,
         cart: cart,
+        user: req.session.user,
         data: {
             countries: data.countries()
         }

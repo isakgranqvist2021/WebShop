@@ -15,6 +15,7 @@ const app = express(); // initialize express
 import index from './routers/index'; // every route that can be accessed without authorization
 import users from './routers/users'; // every route that can only be accessed with authorization
 import api from './routers/api';
+import admin from './routers/admin';
 import pathNotFound from './routers/404';
 
 /* connect to mongodb */
@@ -51,8 +52,7 @@ app.use(session({
 
 /* file parsing setup */
 app.use(express.json({
-    extended: true, // should the server be allowed to parse nested objects
-    limit: '50mb'
+    extended: true // should the server be allowed to parse nested objects
 })); // allow server to parse json data
 
 app.use(express.urlencoded({
@@ -69,14 +69,15 @@ app.use(expressEjsLayouts); // enable ejs layout - extend a single layout file
 
 /* static files setup - responsible for the public folder */
 app.use('/public', express.static('public')); // set the folder where public files will be served from
-app.use('/assets', express.static('node_modules/bootstrap')); // where bootstrap is loaded from
-
+app.use('/assets', express.static('node_modules/')); // where bootstrap is loaded from
+app.use('/uploads', express.static('uploads'));
 
 app.use(configMiddleware.setupConfig); // populates the config header with useful data
 
 /* router setup - responsible for the controllers folder */
 app.use('/', authMiddleware.hasNotAuth, index); // every route that can be accessed without authorization
 app.use('/users', authMiddleware.hasAuth, configMiddleware.populateUser, users); // every route that can only be accessed with authorization
+app.use('/admin', authMiddleware.hasAuth, configMiddleware.populateUser, configMiddleware.isAdmin, admin);
 app.use('/api', api);
 app.use('*', pathNotFound.template);
 

@@ -4,8 +4,8 @@ String.prototype.capitalize = function() {
 }
 %> 
 <div class="container pt-5">
-    <form class="pb-5" method="POST" action="/users/account">
-        <h2 class="mb-5 display-4">Account Information</h2>
+    <form class="pb-5" id="update-account-form" method="POST" action="/users/account">
+        <h2 class="mb-5 display-4">Account Settings</h2>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control" id="email" value="<%= user.email %>" name="email">
@@ -42,14 +42,14 @@ String.prototype.capitalize = function() {
             <label for="zip" class="form-label">Zip Code</label>
             <input type="text" class="form-control" id="zip" value="<%= user.zip %>" name="zip">
         </div>
-        <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary">Save Account</button>
-        </div>
     </form>
+    <form method="POST" id="del-account-form" action="/users/delete-account" onsubmit="return confirm('Are you sure you wish to delete your account?\nthis action is irreversible');"></form>
     <hr>
+
     <div class="pt-5 pb-5">
-        <form method="POST" action="/users/delete-account" onsubmit="return confirm('Are you sure you wish to delete your account?\nthis action is irreversible');">
-            <button class="btn btn-danger">Delete My Account</button>
+        <form class="d-flex justify-content-between align-items-center">
+            <button type="button" class="btn btn-danger" onclick="if(confirm('Are you sure you wish to delete your account?\nthis action is irreversible')) document.getElementById('del-account-form').submit()">Delete My Account</button>
+            <button type="button" class="btn btn-primary" onclick="document.getElementById('update-account-form').submit()">Save Account</button>
         </form>
     </div>
 </div>

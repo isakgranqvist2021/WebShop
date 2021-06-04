@@ -19,7 +19,7 @@ async function template(req, res) {
 
     req.session.referer = `/products?q=${req.query.q.toLowerCase()}&page=${req.query.page || '1'}`;
 
-    return res.render('pages/products', {
+    return res.render('pages/index/products', {
         title: 'Products',
         q: req.query.q,
         p: req.query.page || '1',

@@ -13,8 +13,18 @@ async function GET(url) {
     }
 }
 
-async function POST() {
+async function POST(url, body, headers) {
+    try {
+        const response = await fetch(serverAddr + url, {
+            method: 'POST',
+            body: body,
+            headers
+        });
 
+        return await response.json();
+    } catch (err) {
+        Promise.reject(err);
+    }
 }
 
 export default { GET, POST };
