@@ -7,7 +7,7 @@ const productSchema = new Schema({
     title: { type: String, required: true },
     product_collection: { type: String, required: true },
     on_sale: { type: Boolean, default: false },
-    on_sale_price: { type: Number, required: false },
+    on_sale_percentage: { type: Number, required: false, default: 0 },
     description: [String],
     price: { type: Number, required: true },
     reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
@@ -39,7 +39,9 @@ async function findProducts(filter) {
                 variants: 1,
                 _id: 1,
                 price: 1,
-                title: 1
+                title: 1,
+                on_sale: 1,
+                on_sale_percentage: 1
             },
             populate: {
                 path: 'variants',

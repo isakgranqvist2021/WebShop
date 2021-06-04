@@ -17,7 +17,7 @@ app.get('/data', (req, res) => {
     let files = fs.readdirSync('./data');
     let collections = [];
 
-    files.slice(0, n).forEach(fn => {
+    files.slice(2500, 3500).forEach(fn => {
         let raw = fs.readFileSync('./data/' + fn);
         d.push(JSON.parse(raw.toString()).data);
         collections.push(JSON.parse(raw.toString()).data.articleType.typeName)

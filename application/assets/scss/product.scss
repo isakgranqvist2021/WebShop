@@ -25,3 +25,20 @@
         }
     }
 }
+
+.price {
+    margin: 1rem 0;
+
+    .green {
+        color: #1fa10e;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .red {
+        text-decoration: line-through;
+        color: crimson;
+        margin-left: .4rem;
+        font-size: 1rem;
+    }
+}

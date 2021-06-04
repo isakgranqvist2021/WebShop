@@ -43,6 +43,8 @@ async function save(p) {
         price: p.parentNode.querySelector('.price').value,
         description: [p.parentNode.querySelector('.description').textContent],
         product_collection: p.parentNode.querySelector('.product_collection').value,
+        on_sale: p.parentNode.querySelector('.on_sale').checked,
+        on_sale_percentage: p.parentNode.querySelector('.percentage').value || 0,
         variants: await saveImages(p, p.parentNode.querySelector('.color').value)
     };
 
@@ -78,8 +80,16 @@ function draw(data, filter) {
                         <img src="${imgstuff(dp.styleImages.front)}">
                         <img src="${imgstuff(dp.styleImages.default)}">
                     </div>
-    
-                    <button onclick="save(this)">Save</button>
+
+                    <div class="fg">
+                        <label>On Sale</label>
+                        <input class="on_sale" type="checkbox">
+                    </div>
+
+                    <label>Percentage Reduction</label>
+                    <input class="percentage" type="number">
+                    
+                    <button onclick="save(this)">Add To Store</button>
                 </div>`
             }
 
@@ -88,7 +98,7 @@ function draw(data, filter) {
 
 window.onload = async () => {
     const res = await getData();
-    console.log(res);
+
     let select = document.querySelector('#select-collection')
     res.collections.forEach(collection => {
         let option = document.createElement('option');
@@ -97,9 +107,7 @@ window.onload = async () => {
         select.appendChild(option);
     });
 
-    select.addEventListener('change', (e) => {
-        draw(res.products, e.target.value)
-    });
+    select.addEventListener('change', (e) => draw(res.products, e.target.value));
 
-    draw(res.products, 'watches');
+    draw(res.products, res.collections[0]);
 }

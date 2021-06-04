@@ -29,9 +29,9 @@ DB = ?
 mkdir application/uploads
 ```
 
-## npm start 150 -> 150 products
-## npm start -> 100 products
-## npm start 10000 -> 10000 products
+#### npm start 150 -> 150 products
+#### npm start -> 100 products
+#### npm start 10000 -> 10000 products
 ```js
 npm start <products: uint>
 ```

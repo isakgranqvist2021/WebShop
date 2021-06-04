@@ -29,16 +29,24 @@ function getCollections() {
                 label: 'hats',
                 thumbnail: { src: '', alt: '' }
             },
-            {
-                label: 'accessories',
-                thumbnail: { src: '', alt: '' }
-            },
+            // {
+            //     label: 'accessories',
+            //     thumbnail: { src: '', alt: '' }
+            // },
             {
                 label: 'on_sale',
                 thumbnail: { src: '', alt: '' }
             },
             {
                 label: 'bags',
+                thumbnail: { src: '', alt: '' }
+            },
+            {
+                label: 'Tshirts',
+                thumbnail: { src: '', alt: '' }
+            },
+            {
+                label: 'Watches',
                 thumbnail: { src: '', alt: '' }
             }
         ]

@@ -4,8 +4,15 @@ import data from '../../utils/data';
 // helper functions
 function calculateTotal(p) {
     let total = 0;
+
+
     p.forEach(pr => {
-        total += (pr.price * pr.qty);
+        if (pr.on_sale) {
+            let mb = (100 - pr.on_sale_percentage) / 100;
+            total += Math.round(pr.price * mb);
+        } else {
+            total += (pr.price * pr.qty);
+        }
     });
 
     return Math.ceil(total);

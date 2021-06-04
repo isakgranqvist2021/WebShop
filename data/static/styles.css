@@ -19,6 +19,8 @@ nav {
 
 #result {
     padding-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 #result .product {
@@ -56,4 +58,13 @@ nav {
 
 #result .product .images {
     margin: 1rem 0;
+}
+
+#result .product .fg {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#result .product .fg input {
+    width: auto;
 }

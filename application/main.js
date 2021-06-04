@@ -20,35 +20,20 @@ import admin from './routers/admin';
 import pathNotFound from './routers/404';
 
 // connect to mongodb 
-mongoose.connect(config.DB_URI, {
-    useNewUrlParser: true, // current URL string parser is deprecated, and will be removed in a future version. 
-    useUnifiedTopology: true, // Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version.
-    useCreateIndex: true,
-    useFindAndModify: true
-}, (err) => { // check if an error has occured
-    if (err) // if error then exit the application
+(async () => {
+    try {
+        await mongoose.connect(config.DB_URI, {
+            useNewUrlParser: true, // current URL string parser is deprecated, and will be removed in a future version. 
+            useUnifiedTopology: true, // Current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version.
+            useCreateIndex: true,
+            useFindAndModify: true
+        });
+        console.log('🔗 MongoDB has connected 🔗');
+    } catch (err) {
+        console.log(err);
         process.exit(1);
-
-    console.log('MongoDB has connected');
-});
-
-
-// configure server to handle sessions 
-app.use(session({
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({
-        mongoUrl: config.DB_URI
-    }),
-    cookie: {
-        maxAge: 60000 * 60 * 60, // how long should the cookie be alive for if left alone? in milliseconds
-        path: '/',
-        sameSite: 'strict', // only allow requests from the same origin as the server
-        httpOnly: true, // can the cookie be accessed by client-side javascript? true = false :o
-        secure: process.env.NODE_ENV === 'production' // should the cookie accessible over the HTTP protocol or only HTTPS?
     }
-}));
+})();
 
 
 // file parsing setup 
@@ -68,6 +53,23 @@ app.set('env', process.env.NODE_ENV);
 app.use(expressEjsLayouts); // enable ejs layout - extend a single layout file
 
 app.use(cors()); // enable cross-origin-resource-sharing
+
+// configure server to handle sessions 
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: config.DB_URI
+    }),
+    cookie: {
+        maxAge: 60000 * 60 * 60, // how long should the cookie be alive for if left alone? in milliseconds
+        path: '/',
+        sameSite: 'strict', // only allow requests from the same origin as the server
+        httpOnly: true, // can the cookie be accessed by client-side javascript? true = false :o
+        secure: app.get('env') === 'production' // should the cookie accessible over the HTTP protocol or only HTTPS?
+    }
+}));
 
 // static files setup - responsible for the public folder 
 app.use('/public', express.static('public')); // set the folder where public files will be served from
@@ -92,5 +94,5 @@ app.use('/api', api);
 app.use('*', pathNotFound.template);
 
 app.listen(config.PORT, () => { // start server and listen for incomming http requests
-    console.log('Server listening on', config.PORT);
+    console.log(`🌍 Server listening on http://localhost:${config.PORT} 🌍`);
 });
