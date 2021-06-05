@@ -1,8 +1,5 @@
 @import 'colors';
 
-// nav.isTop {}
-
-
 .mobile-nav {
     display: none;
 }
@@ -40,6 +37,7 @@ nav {
     height: 4rem;
     background-color: $primary;
     border-bottom: 1px solid rgba($primary, .2);
+    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
 
     .container {
         height: inherit;
@@ -183,6 +181,7 @@ nav {
         background-color: $primary;
         z-index: 4155;
         border-bottom: 1px solid #ffffff;
+        box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
 
         .open-sidenav {
             cursor: pointer;
@@ -227,6 +226,7 @@ nav {
         border-bottom: none;
         background-color: $dark;
         transition: width 215ms ease-in;
+        box-shadow: none;
 
         &.isOpen {
             width: 320px;

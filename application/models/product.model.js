@@ -101,9 +101,28 @@ async function findWithLimit(config) {
     }
 }
 
+async function deleteOne(id) {
+    try {
+        return await ProductModel.findByIdAndDelete(id);
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+
+async function updateOne(id, update) {
+    try {
+        return await ProductModel.findByIdAndUpdate(id, update);
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
 export default {
     saveProduct,
     findProducts,
     findProduct,
-    findWithLimit
+    findWithLimit,
+    deleteOne,
+    updateOne
 }

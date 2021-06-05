@@ -7,6 +7,7 @@ import Slider from './Components/Slider';
 import Controls from './Components/Controls';
 import Create from './Components/Create';
 import Variants from './Components/Variants';
+import Admin from './Components/Admin';
 
 // gets executed when the document has loaded
 window.onload = () => {
@@ -23,6 +24,7 @@ window.onload = () => {
     } else if (new RegExp(/(\/product\/[a-zA-Z0-9].*)/).test(window.location.pathname)) {
         new Select().init();
         new Slider().init();
+        new Admin().init();
 
     } else if (window.location.pathname === '/products') {
         let s = new URLSearchParams(window.location.search);

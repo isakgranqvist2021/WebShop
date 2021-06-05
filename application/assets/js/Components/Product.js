@@ -27,14 +27,11 @@ class Product {
         if (this.product.variants.length > 0) {
             return `
             <a href="/product/${this.product._id}">
-                
                 ${this.price()}
-
-                <div class="product-img">
-                    <img src="/uploads/${this.product.variants[0].img.src}" alt="${this.product.variants[0].img.alt}">
-                </div>
+                <div class="product-img" style="background-image:url('/uploads/${this.product.variants[0].img.src}')" data-alt="${this.product.variants[0].img.alt}"></div>
+            
                 <div class="product-body">
-                    <p class="product-title">${this.product.title}</p>
+                    <p>${this.product.title}</p>
                 </div>
             </a>`;
         }
