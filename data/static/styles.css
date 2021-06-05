@@ -6,6 +6,7 @@ body,
 html {
     margin: 0;
     width: 100%;
+    background-color: rgb(145, 145, 145);
 }
 
 nav {
@@ -15,19 +16,26 @@ nav {
     width: 100%;
     background-color: #333;
     padding: 5px;
+    padding: 1rem;
+}
+
+nav select {
+    padding: .4rem;
+    width: 20rem;
 }
 
 #result {
-    padding-top: 4rem;
+    padding: 5rem 1rem 1rem 1rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 }
 
 #result .product {
     width: 100%;
-    border: 15px solid rgb(94, 94, 94);
     border-bottom: none;
     padding: 1.5rem;
+    background-color: rgb(255, 255, 255);
 }
 
 #result img {

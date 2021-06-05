@@ -29,11 +29,9 @@ DB = ?
 mkdir application/uploads
 ```
 
-#### npm start 150 -> 150 products
-#### npm start -> 100 products
-#### npm start 10000 -> 10000 products
+## adding products data/
 ```js
-npm start <products: uint>
+npm start <amount of products products>
 ```
 
 ![Nodejs Logo](https://www.schemecolor.com/wallpaper?i=23516&desktop)
