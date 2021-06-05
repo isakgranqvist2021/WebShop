@@ -30,8 +30,9 @@ mkdir application/uploads
 ```
 
 ## adding products data/
+#### ./deliver-json.exe 500
 ```js
-npm start <amount of products products>
+deliver-json.exe <products:int>
 ```
 
 ![Nodejs Logo](https://www.schemecolor.com/wallpaper?i=23516&desktop)
