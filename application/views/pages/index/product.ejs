@@ -24,8 +24,8 @@
             <div class="col-md-6" id="product-info">
                 <% if(typeof user == 'object' && user && user.admin) { %>
                     <div class="product-actions d-flex">
-                        <a class="me-3 toggle-edit-form text-decoration-none">Edit Product</a>
-                        <a class="text-decoration-none" href="/admin/delete-product/<%= product._id %>">Delete Product</a>
+                        <a class="me-3 toggle-edit-form text-decoration-none"><i class="fas fa-edit"></i></a>
+                        <a class="text-decoration-none" href="/admin/delete-product/<%= product._id %>"><i class="fas fa-trash"></i></a>
                     </div>
                 <% } %>
 
