@@ -54,11 +54,11 @@ func getData(n int) []Object {
 	return objects
 }
 
-func removeDuplicateValues(intSlice []string) []string {
+func removeDuplicateValues(slice []string) []string {
 	keys := make(map[string]bool)
 	list := []string{}
 
-	for _, entry := range intSlice {
+	for _, entry := range slice {
 		if _, value := keys[entry]; !value {
 			keys[entry] = true
 			list = append(list, entry)
