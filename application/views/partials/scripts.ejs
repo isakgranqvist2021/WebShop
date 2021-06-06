@@ -1,0 +1,6 @@
+<script>document.querySelector("main").style.paddingTop=(window.innerWidth>900?document.getElementById("main-navigation"):document.querySelector(".mobile-nav")).getBoundingClientRect().height+"px";</script>
+<script src="/assets/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script><% config.scripts.forEach(script => { %>
+<script src="<%= script %>"></script><% 
+}) %>
+<script src="/public/js/bundle.min.js"></script>

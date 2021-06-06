@@ -30,8 +30,7 @@ import pathNotFound from './routers/404';
         });
         console.log('🔗 MongoDB has connected 🔗');
     } catch (err) {
-        console.log(err);
-        process.exit(1);
+        throw err;
     }
 })();
 

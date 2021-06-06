@@ -32,7 +32,7 @@ class Form {
         }
 
         sb.addEventListener('click', () => {
-
+            document.querySelector('button').disabled = true;
             /* 
                 if the submit is successful then the server will redirect the user to the /users/account page which will trigger 
                 the if statement at the end of the function
