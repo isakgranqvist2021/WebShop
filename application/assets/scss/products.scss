@@ -1,4 +1,5 @@
-@import 'card';
+@import './Components/card';
+@import './Components/colors';
 
 .products {
     display: grid;
@@ -56,7 +57,7 @@
             width: 100%;
             color: #ffffff;
             overflow: hidden;
-            background-color: #3f3879e1;
+            background-color: rgba($primary, .78);
             transition: height 170ms linear;
             border-bottom-left-radius: .5rem;
             border-bottom-right-radius: .5rem;

@@ -1,11 +1,16 @@
 <div class="hero-section">
     <div class="container">
         <div class="content">
-            <%- config.page_title %>
-            <%- config.page_subtitle %>
-
+            <h1><%= config.page_title[0] %> <span><%= config.page_title[1]%></span></h1>
+            <p><%= config.page_subtitle %></p>
             <button class="btn btn-primary" onclick="document.getElementById('featured').scrollIntoView()">Click Me!</button>
         </div>
-        <%- config.page_img %>
+        
+        <div 
+            class="image" 
+            style="background-image:url('<%= config.page_img.src %>')" 
+            data-alt="<%= config.page_img.alt %>">
+        </div>`
+
     </div>
 </div>

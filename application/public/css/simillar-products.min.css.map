@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AACI,kBADc,CACd,cAAc,AAAC,CACX,gBAAgB,CAAE,YAAY,CAMjC,AARL,AAIQ,kBAJU,CACd,cAAc,CAGV,GAAG,AAAC,CACA,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,KAAK,CAChB",
+    "mappings": "AAAA,AAEQ,kBAFU,CACd,cAAc,CACV,GAAG,AAAC,CACA,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,KAAK,CACb,UAAU,CAAE,OAAO,CACtB",
     "sources": [
         "../../assets/scss/simillar-products.scss"
     ],

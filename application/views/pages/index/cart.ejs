@@ -1,8 +1,6 @@
 <% 
 function onSalePrice(pr) {
     let mb = (100 - pr.on_sale_percentage) / 100;
-    console.log(Math.round(pr.price * mb));
-    console.log(pr.on_sale_percentage)
     return Math.round(pr.price * mb);
 }
 %> 

@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
-@import 'colors';
+@import './Components/colors';
 @import '~/../../../node_modules/bootstrap/scss/bootstrap.scss';
-@import 'nav';
-@import 'cart';
-@import 'alerts';
+@import './Components/nav';
+@import './Components/cart';
+@import './Components/alerts';
 
 html,
 body {
@@ -13,6 +13,7 @@ body {
 
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: rgb(255, 255, 255);
 
     &::-webkit-scrollbar {
         background-color: #ffffff;
@@ -22,4 +23,8 @@ body {
         background-color: $primary;
         border-radius: 1rem;
     }
+}
+
+.btn.btn-primary {
+    color: $light;
 }
