@@ -6,7 +6,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 
-    a {
+    .product-c {
         width: 100%;
         height: 30rem;
         text-decoration: none;
@@ -57,18 +57,27 @@
             width: 100%;
             color: #ffffff;
             overflow: hidden;
-            background-color: rgba($primary, .78);
+            background-color: rgba($primary, .89);
             transition: height 170ms linear;
             border-bottom-left-radius: .5rem;
             border-bottom-right-radius: .5rem;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
 
             p {
-                font-size: 1.4rem;
+                font-size: 1.7rem;
                 text-transform: capitalize;
                 text-align: center;
+                margin: 0 0 1rem 0;
+                font-weight: 600;
+                max-width: 80%;
+            }
+
+            .product-actions {
+                display: flex;
+                gap: 1rem;
             }
         }
     }

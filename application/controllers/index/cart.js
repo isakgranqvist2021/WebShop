@@ -47,6 +47,8 @@ async function template(req, res) {
 }
 
 function action_add(req, res) {
+    let redurl;
+
     if (!req.session.cart) {
         req.session.cart = [];
     }
@@ -57,7 +59,13 @@ function action_add(req, res) {
         qty: 1
     });
 
-    return res.redirect(req.headers.referer + '?success=added to cart');
+    if (req.headers.referer.includes('?')) {
+        redurl = req.headers.referer + '&success=added to cart';
+    } else {
+        redurl = req.headers.referer + '?success=added to cart';
+    }
+
+    return res.redirect(redurl);
 }
 
 function action_remove(req, res) {

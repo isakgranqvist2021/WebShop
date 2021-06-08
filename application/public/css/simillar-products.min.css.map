@@ -2,7 +2,7 @@
     "version": 3,
     "mappings": "AAAA,AAEQ,kBAFU,CACd,cAAc,CACV,GAAG,AAAC,CACA,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,KAAK,CACb,UAAU,CAAE,OAAO,CACtB",
     "sources": [
-        "../../assets/scss/simillar-products.scss"
+        "../../assets/scss/Parts/simillar-products.scss"
     ],
     "names": [],
     "file": "simillar-products.min.css"

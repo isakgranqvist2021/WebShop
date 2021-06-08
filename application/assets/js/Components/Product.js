@@ -26,14 +26,18 @@ class Product {
     template() {
         if (this.product.variants.length > 0) {
             return `
-            <a href="/product/${this.product._id}">
+            <div class="product-c">
                 ${this.price()}
                 <div class="product-img" style="background-image:url('/uploads/${this.product.variants[0].img.src}')" data-alt="${this.product.variants[0].img.alt}"></div>
             
                 <div class="product-body">
                     <p>${this.product.title}</p>
+                    <div class="product-actions">
+                        <a href="/add-to-cart/${this.product._id}" class="btn btn-light">Add To Cart</a>
+                        <a href="/product/${this.product._id}" class="btn btn-secondary">View Product</a>
+                    </div>
                 </div>
-            </a>`;
+            </div>`;
         }
     }
 }
