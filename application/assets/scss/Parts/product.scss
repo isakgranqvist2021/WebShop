@@ -1,3 +1,5 @@
+@import '../Components/colors';
+
 .go-back {
     position: absolute;
 }
@@ -22,6 +24,35 @@
     top: 50%;
     display: flex;
     flex-direction: column;
+
+    a {
+        padding: 1rem;
+        margin-right: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        transition: transform 200ms linear;
+        width: 48px;
+        height: 48px;
+        
+        &:not(:last-of-type) {      
+            margin-bottom: 1rem;
+            background-color: $primary; 
+        }
+
+        &:nth-child(2) {
+            background-color: $danger;
+        }
+        
+        i { 
+            color: $light;
+        }
+
+        &:hover {
+            transform: scale(.87);
+        }
+    }
 }
 
 #product-info {

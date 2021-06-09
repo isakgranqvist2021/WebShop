@@ -3,9 +3,9 @@
         <div class="content">
             <h1><%= config.page_title[0] %> <span><%= config.page_title[1]%></span></h1>
             <p><%= config.page_subtitle %></p>
-            <button class="btn btn-primary" onclick="document.getElementById('featured').scrollIntoView()">Click Me!</button>
+            <button class="btn btn-primary" onclick="window.location.href ='/products?q=on_sale'">Summer Sale!</button>
         </div>
-        
+         
         <div 
             class="image" 
             style="background-image:url('<%= config.page_img.src %>')" 

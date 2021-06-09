@@ -1,4 +1,4 @@
-const serverAddr = 'http://localhost:3000';
+const serverAddr = 'https://fantastic-invention.herokuapp.com';
 
 async function GET(url) {
     try {

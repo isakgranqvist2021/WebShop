@@ -8,7 +8,6 @@ async function action(req, res) {
         await productMethods.updateOne(req.params.pid, req.body);
         return res.redirect(req.headers.referer + '?success=updated product with id ' + req.params.pid)
     } catch (err) {
-        console.log(err);
         return res.redirect(req.headers.referer + '?err=cannot update product');
     }
 }

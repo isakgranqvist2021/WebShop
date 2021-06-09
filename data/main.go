@@ -9,6 +9,7 @@ import (
 	"sync"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 var wg sync.WaitGroup = sync.WaitGroup{}
@@ -83,7 +84,7 @@ func main() {
 	fmt.Printf("n = %d\n", n)
 
 	app := fiber.New()
-
+	app.Use(cors.New())
 	app.Static("/static", "./static")
 
 	app.Get("/", func(c *fiber.Ctx) error {

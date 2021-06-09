@@ -19,7 +19,7 @@ async function action(req, res) {
                 if (typeof (result) === 'string') throw result;
 
                 req.session.uid = result._id;
-                return res.redirect('/users/account' + '?success=you have been signed in');
+                return res.redirect('/users/account' + '?success=' + 'you have been signed in');
 
             } catch (err) {
                 return res.redirect('/sign-in' + '?err=' + err)
@@ -29,7 +29,6 @@ async function action(req, res) {
             try {
                 const result = await _signInWithGoogle(req.body.email);
                 req.session.uid = result.uid;
-
                 delete result.uid;
                 return res.json(result);
             } catch (err) {

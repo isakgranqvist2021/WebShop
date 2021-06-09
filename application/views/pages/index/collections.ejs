@@ -3,8 +3,8 @@
 
     <div class="collections">
         <% config.collections.forEach((collection) => { %>
-            <a class="card" href="/products?q=<%= collection.label %>">
-                <%= collection.label.replace('_', ' ') %>
+            <a class="card" href="/products?q=<%= collection.label %>" style="background-image: url('<%= collection.thumbnail.src %>');">
+                <h3><%= collection.label.replace('_', ' ') %></h3>
             </a>
         <% }) %>
     </div>

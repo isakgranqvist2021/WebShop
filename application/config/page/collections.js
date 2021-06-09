@@ -2,47 +2,43 @@ function getCollections() {
     return {
         collections: [
             {
-                label: 'all',
-                thumbnail: { src: '', alt: '' }
-            },
-            {
-                label: 'shirts',
-                thumbnail: { src: '', alt: '' }
-            },
-            {
                 label: 'jeans',
-                thumbnail: { src: '', alt: '' }
+                thumbnail: { src: '/public/img/jeans.jpg', alt: '' }
             },
             {
                 label: 'jackets',
-                thumbnail: { src: '', alt: '' }
+                thumbnail: { src: '/public/img/jackets.jpg', alt: '' }
             },
             {
                 label: 'pants',
-                thumbnail: { src: '', alt: '' }
+                thumbnail: { src: '/public/img/pants.jpg', alt: '' }
             },
             {
                 label: 'shoes',
-                thumbnail: { src: '', alt: '' }
+                thumbnail: { src: '/public/img/shoes.jpg', alt: '' }
             },
             {
                 label: 'hats',
-                thumbnail: { src: '', alt: '' }
+                thumbnail: { src: '/public/img/hats.jpg', alt: '' }
             },
             {
                 label: 'on_sale',
-                thumbnail: { src: '', alt: '' }
+                thumbnail: { src: '/public/img/sale.jpg', alt: '' }
             },
             {
                 label: 'bags',
-                thumbnail: { src: '', alt: '' }
+                thumbnail: { src: '/public/img/bags.jpg', alt: '' }
             },
             {
                 label: 'Tshirts',
-                thumbnail: { src: '', alt: '' }
+                thumbnail: { src: '/public/img/shirts.jpg', alt: '' }
             },
             {
                 label: 'Watches',
+                thumbnail: { src: '/public/img/watches.jpg', alt: '' }
+            },
+            {
+                label: 'all',
                 thumbnail: { src: '', alt: '' }
             }
         ]

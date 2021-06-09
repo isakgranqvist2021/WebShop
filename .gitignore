@@ -14,5 +14,3 @@
 /application/.env
 /.vscode
 /application/uploads
-/data/*.js
-/data/data/*
